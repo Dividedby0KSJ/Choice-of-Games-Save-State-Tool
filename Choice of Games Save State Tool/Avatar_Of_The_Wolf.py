@@ -1,5 +1,5 @@
 import datetime, os, shutil, runpy
-
+Stop = 0
 #------------------------------------------------------- User Input -------------------------------------------------------
 
 #The Dir where the saves(Games) will be added
@@ -32,7 +32,7 @@ def Game_SaveLoad_Menu():
 
     Choice = int(input("Save or Load? > "))
     if Choice == 99:
-        exit
+        runpy.run_module(mod_name='GoodByetxt')
 
     elif Choice == 0:
         print("Back to Game Menu")
@@ -78,14 +78,14 @@ def Game_SaveLoad_Menu():
             print(Restore_Folder_Path, " is the folder Path ")
 
             #See's if you want to load that file
-            Confirm_Load = int(input("\nDo you want to continue? > "))
-            print(".1 Yes\n.2 No")
+            Confirm_Load = int(input("\nDo you want to continue? \n 1. Yes \n 2. No \n > "))
+
             if Confirm_Load == 1:
-                    print("Loading Game")
+                print("Loading Game")
 
             elif Confirm_Load == 2:
                 print("Ok :)")
-                Game_Load()
+                
 
             else:
                 print("Invalid Anser")
@@ -95,7 +95,8 @@ def Game_SaveLoad_Menu():
             shutil.copytree(src=Restore_Folder_Path,
                             dst=Save_Path, dirs_exist_ok=True)
             anykey = input("Press the 'Enter' key to go back to the menu")
-            Game_SaveLoad_Menu()
+            
+            
 
         Game_Load()
 
@@ -107,5 +108,12 @@ def Game_SaveLoad_Menu():
 #-------------------------------------------------------- Code Start -------------------------------------------------------
 
 print("this is the Save Load menu for " + (Game_Name))
-Game_SaveLoad_Menu()
-exit()
+
+
+if Stop == 1:
+    print()
+
+elif Stop == 0:
+    Game_SaveLoad_Menu()
+    Game_SaveLoad_Menu()
+    Game_SaveLoad_Menu()

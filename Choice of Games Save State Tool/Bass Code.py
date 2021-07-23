@@ -1,6 +1,7 @@
 print("This file is only to be used to make new gmaes in the 'CoG_ALL_IN_ONE' .py code")
 anykey = input("this code will exit on 'Enter' press")
-exit
+exit()
+#-------------------------------------------------- Copy all code below -------------------------------------------------------
 import datetime, os, shutil, runpy
 
 
@@ -36,7 +37,7 @@ def Game_SaveLoad_Menu():
 
     Choice = int(input("Save or Load? > "))
     if Choice == 99:
-        exit
+        print()
 
     elif Choice == 0:
         print("Back to Game Menu")
@@ -44,7 +45,7 @@ def Game_SaveLoad_Menu():
     
     elif Choice == 1: #Save
         print("Save")
-        
+#-------------------------------------------------------- Save -------------------------------------------------------        
         #Save function, make a  folder with the date and time
         def Game_Save():
 
@@ -70,7 +71,7 @@ def Game_SaveLoad_Menu():
 
     elif Choice == 2: #Load
         print("Load")
-
+#-------------------------------------------------------- Load -------------------------------------------------------
         def Game_Load():
             os.chdir(Save_SubFolder)
             for n, each in enumerate(os.listdir()):
@@ -111,4 +112,5 @@ def Game_SaveLoad_Menu():
 #-------------------------------------------------------- Code Start -------------------------------------------------------
 
 print("this is the Save Load menu for " + (Game_Name))
+
 Game_SaveLoad_Menu()
