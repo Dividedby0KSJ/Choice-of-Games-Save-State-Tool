@@ -1,0 +1,1 @@
+wt.exe -p "Python" python.exe "D:\VSCode Workplace\CoG Save manager\Divideds_Cog_Save_Tool.py"
