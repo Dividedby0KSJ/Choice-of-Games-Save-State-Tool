@@ -2,7 +2,14 @@
 # anykey = input("this code will run on 'Enter' press")
 # exit()
 #-------------------------------------------------- Copy all code below -------------------------------------------------------
-import datetime, os, shutil, runpy, sys
+import datetime, os, shutil, pyttsx3
+from runpy import run_module
+from gtts import gTTS
+from playsound import playsound
+from time import sleep
+
+# initialize Text-to-speech engine
+TTSEngine = pyttsx3.init()
 
 i = 0
 while i <= 10:
@@ -38,7 +45,10 @@ while i <= 10:
         Save_Path = r"C:/Program Files/Steam/userdata/"+ str(steamID3) +"/"+ str(Appid) +"/remote"
 
     else:
-        print("You need to state wether the OS is 32bit or 64bit in the game saveload fille! \nNow closing")
+        Error_OsBit = "You need to state wether the OS is 32 bit or 64 bit in the game saveload file!"
+        TTSEngine.say ((Error_OsBit) + ". Now Closing")
+        TTSEngine.runAndWait()
+        print((Error_OsBit) + "\nNow closing")
         exit()
 
     # Path to the games Save Files, It might be difrent on other PC's. Add you steam Numbers and game numbers
@@ -110,12 +120,12 @@ while i <= 10:
         # Shutdown program
         Choice = int(input("Save or Load? > "))
         if Choice == 99:
-            runpy.run_module(mod_name='GoodByetxt')
+            run_module(mod_name='GoodByetxt')
 
         # Game Menu
         elif Choice == 0:
             print("Back to Game Menu")
-            runpy.run_module(mod_name='CogMenu')
+            run_module(mod_name='CogMenu')
 
         # Save
         elif Choice == 1:
