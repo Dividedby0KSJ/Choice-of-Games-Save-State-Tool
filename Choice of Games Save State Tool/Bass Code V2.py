@@ -52,8 +52,8 @@ while i <= 10:
     #-------------------------------------------------------- Load -------------------------------------------------------
 
     # Load Function, list the saved folders in the [ RootDir + Save_SubFolder ] and ask's the users witch to select to load
-    # then ask's the user if what thay selected it what they whant
     def Game_Load():
+        os.chdir(RootDir)
         os.chdir(Save_SubFolder)
         for n, each in enumerate(os.listdir()):
             print(n, each)
@@ -61,27 +61,12 @@ while i <= 10:
         Restore_Folder_Name = os.listdir()[ask]
         print("\n" + (Restore_Folder_Name) + " is selected ")
         Restore_Folder_Path = RootDir + "/" + Save_SubFolder + Restore_Folder_Name
-        print("\n" + (Restore_Folder_Path) + " is the folder Path ")
+        print("\n '" + (Restore_Folder_Path) + "' is the folder Path ")
         
-        #See's if you want to load that file
-        Confirm_Load = int(input("\nDo you want to continue? > "))
-        print(".1 Yes\n.2 No")
-        if Confirm_Load == 1:
-                print("Loading Game")
-
-        elif Confirm_Load == 2:
-            print("Ok :)")
-            Game_SaveLoad_Menu()
-
-        else:
-            print("Invalid Anser")
-            Confirm_Load()
-
-
         shutil.copytree(src=Restore_Folder_Path,
                         dst=Save_Path, dirs_exist_ok=True)
         anykey = input("Press the 'Enter' key to go back to the menu")
-        Game_SaveLoad_Menu()
+        
 
     #-------------------------------------------------------- Menue -------------------------------------------------------
 

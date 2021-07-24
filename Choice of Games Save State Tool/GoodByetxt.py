@@ -18,4 +18,4 @@ A1()
 sleep(1)
 
 exit()
-#input()
+# anykey = input()
