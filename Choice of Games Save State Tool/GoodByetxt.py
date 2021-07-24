@@ -11,7 +11,7 @@ def A1():
         for c in line:          # for each character in each line
             print(c, end='')    # print a single character, and keep the cursor there.
             sys.stdout.flush()  # flush the buffer
-            sleep(0.025)          # wait a little to make the effect look good.
+            sleep(0.001)          # wait a little to make the effect look good.
         print('')               # line break (optional, could also be part of the message)
 A1()
 
