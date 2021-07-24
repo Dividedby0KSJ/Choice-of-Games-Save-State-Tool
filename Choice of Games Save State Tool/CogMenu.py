@@ -11,7 +11,7 @@ def Game_Menu():
 
     Choice = int(input("Witch Game Do You Want To Mange > "))
     if Choice == 0:
-        exit
+        run_module(mod_name='GoodByetxt')
 
     elif Choice == 1:
         run_module(mod_name='CoT_Dragon_Menu')
@@ -32,5 +32,3 @@ def Game_Menu():
 #----------------------------------------------------- Code Start -------------------------------------------------------
 
 Game_Menu()
-
-exit()

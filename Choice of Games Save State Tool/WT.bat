@@ -1,1 +1,1 @@
-wt.exe -p "Python" python.exe ".\Divideds_Cog_Save_Tool.py"
+wt.exe python.exe ".\Divideds_Cog_Save_Tool.py"

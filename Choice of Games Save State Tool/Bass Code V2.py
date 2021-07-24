@@ -13,10 +13,10 @@ while i <= 10:
     RootDir = r"D:/VSCode Workplace/CoG Save manager"
 
     #the games name or what you want the program to call the game
-    Game_Name = r"Avatar of the Wolf"
+    Game_Name = r"Game Name"
 
     #Path to the games Save Files, It might be difrent on other PC's. Add you steam Numbers and game numbers
-    Save_Path = r"C:/Program Files (x86)/Steam/userdata/160046958/643570/remote"
+    Save_Path = r"C:/Program Files (x86)/Steam/userdata/UserNumbers/Game/remote"
 
     #-------------------------------------------------------- Variable's -------------------------------------------------------
 
