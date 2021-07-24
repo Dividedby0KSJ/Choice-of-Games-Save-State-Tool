@@ -12,22 +12,22 @@ def A1():
         for c in line:          # for each character in each line
             print(c, end='')    # print a single character, and keep the cursor there.
             sys.stdout.flush()  # flush the buffer
-            sleep(0.0)          # wait a little to make the effect look good.
+            sleep(0.02)          # wait a little to make the effect look good.
         print('')               # line break (optional, could also be part of the message)
 A1()
 
 sleep(0.)
 
 def A2():
-    lines2 = ["You can't run this from the server if the",
-            "drive path is difrent, as this code is not open",
-            "to the publick you should know this \033[31m'Kieren'\033[0m >_>"]
+    lines2 = ["                  Hello",
+            "                  World!",
+            "\033[31m             pee pee poo poo\033[0m"]
 
     for line in lines2:          # for each line of text (or each message)
         for c in line:          # for each character in each line
             print(c, end='')    # print a single character, and keep the cursor there.
             sys.stdout.flush()  # flush the buffer
-            sleep(0.000)          # wait a little to make the effect look good.
+            sleep(0.001)          # wait a little to make the effect look good.
         print('')               # line break (optional, could also be part of the message)
 A2()
 

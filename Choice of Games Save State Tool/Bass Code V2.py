@@ -31,11 +31,11 @@ while i <= 10:
 
     if OS_32_or_64 == 64:
         print("OS is 64bit \n")
-        Save_Path = r"C:/Program Files (x86)/Steam/userdata/"+ steamID3 +"/"+ Appid +"/remote"
+        Save_Path = r"C:/Program Files (x86)/Steam/userdata/"+ str(steamID3) +"/"+ str(Appid) +"/remote"
 
     elif OS_32_or_64 == 32:
         print("OS is 32bit, why tho? \nLike just update to 64bit man\n")
-        Save_Path = r"C:/Program Files/Steam/userdata/"+ steamID3 +"/"+ Appid +"/remote"
+        Save_Path = r"C:/Program Files/Steam/userdata/"+ str(steamID3) +"/"+ str(Appid) +"/remote"
 
     else:
         print("You need to state wether the OS is 32bit or 64bit in the game saveload fille! \nNow closing")
@@ -102,7 +102,7 @@ while i <= 10:
 
     # Menu to save, load, Game Menu and Exit program
     def Game_SaveLoad_Menu():
-        print("\n\n99. Exit")
+        print("\n99. Exit")
         print("0.Game Menu")
         print("1. Save")
         print("2. Load")
@@ -133,6 +133,6 @@ while i <= 10:
 
     #-------------------------------------------------------- Code Start -------------------------------------------------------
 
-    print("this is the Save Load menu for " + (Game_Name))
+    print("\033[04mThis is the Save Load menu for " + (Game_Name) + "\033[0m")
 
     Game_SaveLoad_Menu()
