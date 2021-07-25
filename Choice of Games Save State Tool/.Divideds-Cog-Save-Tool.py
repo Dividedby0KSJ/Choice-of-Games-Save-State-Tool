@@ -1,6 +1,8 @@
 #This is the start file, the one the user clicks to start the program and does not tipicly get called
 from runpy import run_module
+
 #----------------------------------------------------- Debug -------------------------------------------------------
+
 def debug():
     print("\nthis is the debug tool")
     print("0. Exit Progam")
@@ -25,10 +27,11 @@ def debug():
         print("invalid anser")
         debug()
 
+#----------------------------------------------------- Code Start -------------------------------------------------------
+
 # debug()
 
-#----------------------------------------------------- Code Start -------------------------------------------------------
-import Hellotxt
+run_module(mod_name='Hellotxt')
 
 run_module(mod_name='CogMenu')
 

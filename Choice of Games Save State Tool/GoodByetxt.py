@@ -1,8 +1,13 @@
 from time import sleep
-import sys
+import sys, pyttsx3
 
 #print(color.underline + 'Hello World !' + color.reset)
 
+# initialize Text-to-speech engine
+TTSEngine = pyttsx3.init()
+TTSEngine.setProperty('rate', 190)
+
+TTSEngine.say("Good Bye!")
 
 def A1():
     lines1 = ["Good Bye!"]
@@ -15,7 +20,7 @@ def A1():
         print('')               # line break (optional, could also be part of the message)
 A1()
 
-sleep(1)
+TTSEngine.runAndWait()
 
 exit()
 # anykey = input()
