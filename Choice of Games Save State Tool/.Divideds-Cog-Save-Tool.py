@@ -1,6 +1,6 @@
 #This is the start file, the one the user clicks to start the program and does not tipicly get called
 from runpy import run_module
-
+import os
 #----------------------------------------------------- Debug -------------------------------------------------------
 
 def debug():
@@ -27,14 +27,42 @@ def debug():
         print("invalid anser")
         debug()
 
+
+
+#----------------------------------------------------- First Run -------------------------------------------------------
+
+import glob
+# All files ending with .txt
+#print(glob.glob("First Run.txt")) 
+
+if glob.glob("First Run.txt"):
+    print("This has been run")
+
+else:
+
+    def FirstRun():
+
+        FirstRun1 = open("First Run.txt", "w")
+        FirstRun1.writelines("YES")
+        FirstRun1.close
+
+        print("First Run txt has been added")
+
+    FirstRun()
+
 #----------------------------------------------------- Code Start -------------------------------------------------------
 
 # debug()
 
-run_module(mod_name='Hellotxt')
+def CodeStart():
 
-run_module(mod_name='CogMenu')
 
-run_module(mod_name='GoodByetxt')
+    run_module(mod_name='Hellotxt')
 
-exit()
+    run_module(mod_name='CogMenu')
+
+    run_module(mod_name='GoodByetxt')
+
+    exit()
+
+CodeStart()
