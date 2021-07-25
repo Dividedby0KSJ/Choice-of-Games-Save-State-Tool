@@ -7,6 +7,8 @@ import sys, pyttsx3
 TTSEngine = pyttsx3.init()
 TTSEngine.setProperty('rate', 190)
 
+TTSEngine.say("Good Bye!")
+
 def A1():
     lines1 = ["Good Bye!"]
 
@@ -18,7 +20,7 @@ def A1():
         print('')               # line break (optional, could also be part of the message)
 A1()
 
-sleep(1)
+TTSEngine.runAndWait()
 
 exit()
 # anykey = input()
