@@ -2,7 +2,7 @@
 # anykey = input("this code will run on 'Enter' press")
 # exit()
 #-------------------------------------------------- Copy all code below -------------------------------------------------------
-import datetime, os, shutil, pyttsx3
+import datetime, os, shutil, pyttsx3, subprocess
 from runpy import run_module
 from time import sleep
 
@@ -71,11 +71,6 @@ while i <= 10:
     def Game_Save(): 
 
         # Ask user for input on the folders Suffix
-        TTSEngine.say("What is the Save Name?")
-        print("What is the Save Name?")
-        TTSEngine.runAndWait()
-
-
         SaveName = input("\n >")
         
 
@@ -179,15 +174,15 @@ while i <= 10:
 
         # Game Menu
         elif Choice == 0:
-            TTSEngine.say("Back to game menu")
             print("Back to Game Menu")
-            TTSEngine.runAndWait()
+            #runs the TTS engin in another termainal to prevent it from interupting the text scrole
+            subprocess.Popen(['TTS Lines/BackToGameMenu.py'], shell=True, creationflags=subprocess.SW_HIDE)
             run_module(mod_name='CogMenu')
 
         # Save
         elif Choice == 1:
-            TTSEngine.say("Save")
-            print("Save")
+            TTSEngine.say("Save, What is the Save Name?")
+            print("Save \nWhat is the Save Name?")
             TTSEngine.runAndWait()
             Game_Save()
 
