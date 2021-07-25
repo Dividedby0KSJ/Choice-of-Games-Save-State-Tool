@@ -1,7 +1,11 @@
 from time import sleep
-import sys
+import sys, os, subprocess
 
 #print(color.underline + 'Hello World !' + color.reset)
+
+#runs the TTS engin in another termainal to prevent it from interupting the text scrole
+#os.startfile('HelloTTS.py') #('HelloTTS.py')
+
 
 
 def A1():

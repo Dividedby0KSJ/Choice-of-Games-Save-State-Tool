@@ -4,12 +4,11 @@
 #-------------------------------------------------- Copy all code below -------------------------------------------------------
 import datetime, os, shutil, pyttsx3
 from runpy import run_module
-from gtts import gTTS
-from playsound import playsound
 from time import sleep
 
 # initialize Text-to-speech engine
 TTSEngine = pyttsx3.init()
+TTSEngine.setProperty('rate', 190)
 
 i = 0
 while i <= 10:
@@ -72,12 +71,22 @@ while i <= 10:
     def Game_Save(): 
 
         # Ask user for input on the folders Suffix
-        SaveName = input("What is the Save Name? ")
+        TTSEngine.say("What is the Save Name?")
+        print("What is the Save Name?")
+        TTSEngine.runAndWait()
+
+
+        SaveName = input("\n >")
+        
 
         # this is all the aguments above combined into one so shutil and os can make a folder and save
         New_Backup_Path = Save_SubFolder + FileDateAndTime.strftime('%Y-%m-%d %H.%M.%S ') + SaveName
 
+
+        TTSEngine.say("Copying " + (Game_Name) + " Instance to " + (Game_Name) + " Backup Folder. Please wait")
         print("Copying " + (Game_Name) + " Instance to " + (Game_Name) + " Backup Folder\nPlease wait")
+        TTSEngine.runAndWait()
+
 
         os.chdir(RootDir)
 
@@ -86,6 +95,9 @@ while i <= 10:
         shutil.copytree(src=Save_Path,
                         dst=New_Backup_Path, dirs_exist_ok=True)
 
+
+        TTSEngine.say("Done!")
+        TTSEngine.runAndWait()
         anykey = input("Press the 'Enter' key to go back to the menu")
         Game_SaveLoad_Menu()
 
@@ -93,21 +105,64 @@ while i <= 10:
 
     # Load Function, list the saved folders in the [ RootDir + Save_SubFolder ] and ask's the users witch to select to load
     def Game_Load():
+
         os.chdir(RootDir)
+
         os.chdir(Save_SubFolder)
+
         for n, each in enumerate(os.listdir()):
             print(n, each)
+
         ask = int(input("Number? > "))
+
         Restore_Folder_Name = os.listdir()[ask]
-        print("\n" + (Restore_Folder_Name) + " is selected ")
+
         Restore_Folder_Path = RootDir + "/" + Save_SubFolder + Restore_Folder_Name
-        print("\n '" + (Restore_Folder_Path) + "' is the folder Path ")
+
+        # This gets rid of the numbers in the Restore_Folder_Name so the TTS only says the Save Name
+        Restore_Folder_TTS = ''.join([i for i in Restore_Folder_Name if not i.isdigit()])
+
+
+        TTSEngine.say((Restore_Folder_TTS) + " is selected ")
+        print("\n" + (Restore_Folder_Name) + " is selected ")
+
+        TTSEngine.say("This is the folder path of what you selected.")
+        print("\n '" + (Restore_Folder_Path) + "'\nIs the folder Path of what you selected. ")
+
+        TTSEngine.runAndWait()
+
+        TTSEngine.say("Are you sure?")
+        print("Are you sure? \n")
+
+        TTSEngine.runAndWait()
+
+        Load_Confirm = input(("Yes [Y] Or No [N] \n"))
+
+        if Load_Confirm == "y" or Load_Confirm == "Y":
+            TTSEngine.say("Continuing")
+            print("'Yes'")
+            TTSEngine.runAndWait()
+
+        elif Load_Confirm == "n" or Load_Confirm == "N":
+            TTSEngine.say("Cancelling")
+            print("'No'")
+            TTSEngine.runAndWait()
+            Game_SaveLoad_Menu()
+
+        else:
+            TTSEngine.say("Invalid Answer!")
+            print("\n\nInvalid Answer!")
+            TTSEngine.runAndWait()
+            Game_Load()
+
+        # print(Load_Confirm) # This is a debug, ignor this
         
         shutil.copytree(src=Restore_Folder_Path,
                         dst=Save_Path, dirs_exist_ok=True)
         anykey = input("Press the 'Enter' key to go back to the menu")
-        
+        Game_SaveLoad_Menu()
 
+        
     #-------------------------------------------------------- Menue -------------------------------------------------------
 
     # Menu to save, load, Game Menu and Exit program
@@ -124,25 +179,35 @@ while i <= 10:
 
         # Game Menu
         elif Choice == 0:
+            TTSEngine.say("Back to game menu")
             print("Back to Game Menu")
+            TTSEngine.runAndWait()
             run_module(mod_name='CogMenu')
 
         # Save
         elif Choice == 1:
+            TTSEngine.say("Save")
             print("Save")
+            TTSEngine.runAndWait()
             Game_Save()
 
         # Load
         elif Choice == 2:
+            TTSEngine.say("Load")
             print("Load")
+            TTSEngine.runAndWait()
             Game_Load()
 
         else:
+            TTSEngine.say("Invalid Answer!")
             print("\n\nInvalid Answer\n\n")
+            TTSEngine.runAndWait()
             Game_SaveLoad_Menu()
 
     #-------------------------------------------------------- Code Start -------------------------------------------------------
 
+    TTSEngine.say("This is the Save Load menu for " + (Game_Name))
     print("\033[04mThis is the Save Load menu for " + (Game_Name) + "\033[0m")
+    TTSEngine.runAndWait()
 
     Game_SaveLoad_Menu()
