@@ -16,22 +16,22 @@ while i <= 10:
     #------------------------------------------------------- User Input -------------------------------------------------------
 
     # The Dir where the save states will be added
-    RootDir = r"C:/Users/User/Saved Games/CogSST"
+    RootDir = r'Dir'
 
-    # The games name or what you want the program to call the game
-    Game_Name = r"Game Name"
+    # the games name or what you want the program to call the game
+    Game_Name = r'Name'
 
     # This is you steam ID 3, for exampil yous might look like [U:1:123456789] you need the last set of numbers, not the 'U:1:'
     # or the [], so take out the [U:1:] and leave the other numbers and put them in the steamID3 tag
     # use this website to get your steamID3: https://steamid.io or https://steamidfinder.com
-    steamID3 = 123456789
+    steamID3 = ID
 
     # The Cog App ID of the game you want to manage
     # Check this link for the game id's for all of Cog gmames: https://steamdb.info/search/?a=app_keynames&type=-1&keyname=23&operator=3&keyvalue=Choice+of+Games
-    Appid = 123456789
+    Appid = AppID
 
     # put here wether your os is 32bit or 64bit | put ether 32 or 64 as just numbers, leave out the "bit"
-    OS_32_or_64 = 0
+    OS_32_or_64 = 64
 
     #-------------------------------------------------------- Save Path -------------------------------------------------------
 

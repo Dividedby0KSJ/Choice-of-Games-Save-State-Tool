@@ -3,22 +3,22 @@ pip install pyttsx3==2.71
 pip install pypiwin32
 
 
-@echo off
-echo .
-echo .
-echo .
-echo Do you want to Del This file now that you have instaled the dependencies?[Y/N]
-choice /c YN
-if %errorlevel%==1 goto yes
-if %errorlevel%==2 goto no
+@REM @echo off
+@REM echo .
+@REM echo .
+@REM echo .
+@REM echo Do you want to Del This file now that you have instaled the dependencies?[Y/N]
+@REM choice /c YN
+@REM if %errorlevel%==1 goto yes
+@REM if %errorlevel%==2 goto no
 
-:yes
-echo yes
-goto :Del
+@REM :yes
+@REM echo yes
+@REM goto :Del
 
-:no
-echo no
-exit
+@REM :no
+@REM echo no
+@REM exit
 
-:Del
-goto 2>nul & del "%~f0"
+@REM :Del
+@REM goto 2>nul & del "%~f0"
