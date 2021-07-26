@@ -1,6 +1,7 @@
 #This is the start file, the one the user clicks to start the program and does not tipicly get called
 from runpy import run_module
 import os
+from time import sleep
 #----------------------------------------------------- Debug -------------------------------------------------------
 
 def debug():
@@ -35,18 +36,25 @@ import glob
 # All files ending with .txt
 #print(glob.glob("First Run.txt")) 
 
-if glob.glob("First Run.txt"):
+if glob.glob("Choice of Games Save State Tool\First Run.txt"):
     print("This has been run")
 
 else:
 
     def FirstRun():
 
-        FirstRun1 = open("First Run.txt", "w")
+        FirstRun1 = open(".\Choice of Games Save State Tool\First Run.txt", "w")
         FirstRun1.writelines("YES")
         FirstRun1.close
 
-        print("First Run txt has been added")
+        print("\nFirst Run txt has been added\n")
+
+        import subprocess
+        subprocess.call([r'Choice of Games Save State Tool\Dependencies.bat'])
+ 
+        sleep(1)
+
+        input("\n\ndependencys.bat is done, Making First run file. \n to run first start again del first run.txt\npress any key")
 
     FirstRun()
 

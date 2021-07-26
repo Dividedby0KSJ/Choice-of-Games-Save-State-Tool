@@ -4,7 +4,7 @@ import sys, subprocess
 #print(color.underline + 'Hello World !' + color.reset)
 
 #runs the TTS engin in another termainal to prevent it from interupting the text scrole
-subprocess.Popen(['TTS Lines/HelloTTS.py'], shell=True, creationflags=subprocess.SW_HIDE)
+subprocess.Popen(['Choice of Games Save State Tool\TTS Lines\HelloTTS.py'], shell=True, creationflags=subprocess.SW_HIDE)
 
 def A1():
     lines1 = ["\n\n           \033[95mWellcom to Divided's",
@@ -23,7 +23,7 @@ sleep(0.)
 def A2():
     lines2 = ["        Made by 'Kieren St James'",
             "             Love you all <3",
-            "\033[31m                 v.0.4\033[0m"]
+            "\033[31m                 v.0.7\033[0m"]
 
     for line in lines2:         # for each line of text (or each message)
         for c in line:          # for each character in each line
