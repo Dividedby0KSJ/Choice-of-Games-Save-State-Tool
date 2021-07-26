@@ -26,9 +26,17 @@ Game Name
     ---
     You dont realy need anything here
     since this will change when you make a new game.
-    !YOU CANNOT USE! The following reserved characters: < (less than) > (greater than)
-    : (colon) " (double quote) / (forward slash) \ (backslash) | (vertical bar or pipe)
-    ? (question mark) * (asterisk)    IF YOU DO IT WILL ERROR THE CODE AND NOT WORK
+    YOU CANNOT USE! THE FOLLOWING RESERVED CHARACTERS IN THE GAME NAME
+    < (less than)
+    > (greater than)
+    : (colon)
+    " (double quote)
+    / (forward slash)
+    \ (backslash)
+    | (vertical bar or pipe)
+    ? (question mark)
+    * (asterisk)
+    IF YOU DO IT WILL ERROR THE CODE AND NOT WORK
 
     Examples
         Werewolves Haven Rising [O.G Name {Werewolves: Haven Rising}]
