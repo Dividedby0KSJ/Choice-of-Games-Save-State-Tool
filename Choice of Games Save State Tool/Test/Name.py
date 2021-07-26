@@ -170,7 +170,7 @@ while i <= 10:
         # Shutdown program
         Choice = int(input("Save or Load? > "))
         if Choice == 99:
-            run_module(mod_name='GoodByetxt')
+            run_module(mod_name='0CogSST-GoodByetxt')
 
         # Game Menu
         elif Choice == 0:

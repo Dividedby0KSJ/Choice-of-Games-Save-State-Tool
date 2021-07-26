@@ -61,7 +61,7 @@ def CodeStart():
 
     run_module(mod_name='CogMenu')
 
-    run_module(mod_name='GoodByetxt')
+    run_module(mod_name='0CogSST-GoodByetxt')
 
     exit()
 

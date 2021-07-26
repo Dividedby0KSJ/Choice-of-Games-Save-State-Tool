@@ -1,4 +1,12 @@
 import pyttsx3
+TTSEngine = pyttsx3.init()
+TTSEngine.setProperty('rate', 190)
+#-----------------------------------
+
+
+print("Wellcom to the game sripts maker! \nI am dev.")
+print("I need to ask a few things to make your Cog game compatable with this tool!")
+
 
 
 
@@ -25,7 +33,7 @@ BassCode_Str = BassCode_File.readlines()
 BassCode_File.close()
 
 
-NewGame = open((Game_Name) + ".py", "w")
+NewGame = open("CogSST-" + (Game_Name) + ".py", "w")
 
 NewGame.writelines(BassCode_Str)
 
@@ -42,7 +50,7 @@ BassCode_Str[30] ="    " + "Appid = " +(Appid) +"\n"
 
 BassCode_Str[33] ="    " + "OS_32_or_64 = " +(OS_32_or_64) +"\n"
 
-NewGame = open((Game_Name) + ".py", "w")
+NewGame = open("CogSST-" + (Game_Name) + ".py", "w")
 
 new_file_contents = "".join(BassCode_Str)
 
