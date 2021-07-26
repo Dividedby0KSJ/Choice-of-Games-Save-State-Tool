@@ -16,9 +16,9 @@ while i <= 10:
     #------------------------------------------------------- User Input -------------------------------------------------------
 
     # The Dir where the save states will be added
-    RootDir = r"D:/VSCode Workplace/CoG Save manager"
+    RootDir = r"C:/Users/User/Saved Games/CogSST"
 
-    # the games name or what you want the program to call the game
+    # The games name or what you want the program to call the game
     Game_Name = r"Game Name"
 
     # This is you steam ID 3, for exampil yous might look like [U:1:123456789] you need the last set of numbers, not the 'U:1:'
