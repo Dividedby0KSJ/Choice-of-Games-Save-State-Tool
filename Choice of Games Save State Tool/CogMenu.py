@@ -21,7 +21,7 @@ import glob
 def Game_MenuV2():
     # print("Dev Game_MenuV2")
     print('0 Exit')
-    for n, each in enumerate(glob.glob('Choice of Games Save State Tool\CogSST-*.py'), start=1):
+    for n, each in enumerate(glob.glob('CogSST-*.py'), start=1):
         print(n, each)
 
 
@@ -30,9 +30,9 @@ def Game_MenuV2():
     # print(pyfile, each)    
     ask = int(input("Witch Game Do You Want To Mange > "))
 
-    CogSST_File = glob.glob('Choice of Games Save State Tool\*CogSST-*.py')[ask]
+    CogSST_File = glob.glob('*CogSST-*.py')[ask]
 
-    print(CogSST_File)
+    # print(CogSST_File)
 
     run_path(path_name=(CogSST_File))
 

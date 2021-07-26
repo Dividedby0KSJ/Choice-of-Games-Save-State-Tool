@@ -36,25 +36,25 @@ import glob
 # All files ending with .txt
 #print(glob.glob("First Run.txt")) 
 
-if glob.glob("Choice of Games Save State Tool\First Run.txt"):
+if glob.glob("First Run.txt"):
     print("This has been run")
 
 else:
 
     def FirstRun():
 
-        FirstRun1 = open(".\Choice of Games Save State Tool\First Run.txt", "w")
+        FirstRun1 = open(".\First Run.txt", "w")
         FirstRun1.writelines("YES")
         FirstRun1.close
 
         print("\nFirst Run txt has been added\n")
 
         import subprocess
-        subprocess.call([r'Choice of Games Save State Tool\Dependencies.bat'])
+        subprocess.call([r'Dependencies.bat'])
  
         sleep(1)
 
-        input("\n\ndependencys.bat is done, Making First run file. \n to run first start again del first run.txt\npress any key")
+        input("\n\ndependencys.bat is done, Making First run file. \n to run first start again del first run.txt\npress Enter")
 
     FirstRun()
 
@@ -79,7 +79,7 @@ def NewGamePlus():
     if NewGamePlus_Run == "y" or NewGamePlus_Run == "Y":
         print("'Yes'")
         print("\n\nNew Game Plus sript editer opening\n\n")
-        run_path(path_name='Choice of Games Save State Tool\.NewGamePlus.py')
+        run_path(path_name='.NewGamePlus.py')
         NewGamePlus_PostCMD()
 
     elif NewGamePlus_Run == "n" or NewGamePlus_Run == "N":
@@ -98,7 +98,7 @@ def NewGamePlus_PostCMD():
 
     elif NewGamePlus_Post == "Q" or NewGamePlus_Post == "q":
         print("Quiting")
-        run_path(path_name='Choice of Games Save State Tool\0CogSST-GoodByetxt.py')
+        run_path(path_name='0CogSST-GoodByetxt.py')
         exit()
         
     else:
