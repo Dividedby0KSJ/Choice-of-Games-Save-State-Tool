@@ -1,5 +1,5 @@
 #This is the start file, the one the user clicks to start the program and does not tipicly get called
-from runpy import run_module
+from runpy import run_module, run_path
 import os
 from time import sleep
 #----------------------------------------------------- Debug -------------------------------------------------------
@@ -58,9 +58,8 @@ else:
 
     FirstRun()
 
-#----------------------------------------------------- Code Start -------------------------------------------------------
+#----------------------------------------------------- Code Start Code -------------------------------------------------------
 
-# debug()
 
 def CodeStart():
 
@@ -72,5 +71,45 @@ def CodeStart():
     run_module(mod_name='0CogSST-GoodByetxt')
 
     exit()
+
+def NewGamePlus():
+
+    NewGamePlus_Run = input(('Do You want to run "New Game Plus sript editer"? \n "Yes [Y] Or No [N] \n">'))
+
+    if NewGamePlus_Run == "y" or NewGamePlus_Run == "Y":
+        print("'Yes'")
+        print("\n\nNew Game Plus sript editer opening\n\n")
+        run_path(path_name='Choice of Games Save State Tool\.NewGamePlus.py')
+        NewGamePlus_PostCMD()
+
+    elif NewGamePlus_Run == "n" or NewGamePlus_Run == "N":
+        print("'No'")
+        CodeStart()
+
+    else:
+        print("\n\nInvalid Answer!")
+        NewGamePlus()
+
+def NewGamePlus_PostCMD():
+    NewGamePlus_Post = input(("\n\n\nDo you want to run CogSST? or just quit now?\n\nRun [R] Or Quit [Q] \n>"))
+    
+    if NewGamePlus_Post == "R" or NewGamePlus_Post == "r":
+        print("Runing")
+
+    elif NewGamePlus_Post == "Q" or NewGamePlus_Post == "q":
+        print("Quiting")
+        run_path(path_name='Choice of Games Save State Tool\0CogSST-GoodByetxt.py')
+        exit()
+        
+    else:
+        print("\n\nInvalid Answer!")
+        NewGamePlus_PostCMD()
+
+
+#----------------------------------------------------- Code Start -------------------------------------------------------
+
+# debug()
+
+NewGamePlus()
 
 CodeStart()
