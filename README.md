@@ -1,8 +1,6 @@
 # Choice-of-Games-Save-State-Tool
 ![Cog Save State Tool logo](https://i.imgur.com/3TJANMm.png)
 
-# '!!! This is still very pre-alpha !!!'
-
 ## About the Program
 
 This is a python program to save and load at any point in any Choice of Games Game
