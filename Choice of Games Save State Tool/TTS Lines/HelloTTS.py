@@ -1,6 +1,6 @@
 import pyttsx3
 
-VerNumber = str("0.7.1")
+VerNumber = str("0.8.8")
 
 # initialize Text-to-speech engine
 TTSEngine = pyttsx3.init()

@@ -23,7 +23,7 @@ sleep(0.)
 def A2():
     lines2 = ["        Made by 'Kieren St James'",
             "             Love you all <3",
-            "\033[31m                 v.0.7.1\033[0m"]
+            "\033[31m                 v.0.8.8\033[0m"]
 
     for line in lines2:         # for each line of text (or each message)
         for c in line:          # for each character in each line
