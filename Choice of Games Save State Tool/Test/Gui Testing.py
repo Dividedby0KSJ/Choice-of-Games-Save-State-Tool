@@ -3,10 +3,14 @@ import PySimpleGUI as sg
 # sg.Window(title="Hello World", layout=[[]], margins=(300,100)).read()
 sg.theme('DarkAmber')   # Add a touch of color
 # All the stuff inside your window.
-layout = [  [sg.Text('Some text on Row 1')],
-            [sg.Text('Enter something on Row 2'), sg.Input(do_not_clear=False, size=(5),)],
-            [sg.Button('Ok', button_type=1), sg.Button('Cancel')],
-            [sg.Button('AssFuck')] ]
+layout = [ 
+
+            [sg.Text('Some text on Row 1')],
+            [sg.Text('Enter something on Row 2'), sg.Input(do_not_clear=False, size=(10), key='Userinput1')],
+            [sg.Button('Ok'), sg.Button('Cancel')],
+            [sg.Button('AssFuck')] 
+
+        ]
 
 # Create the Window
 window = sg.Window('Window Title', layout)
@@ -18,6 +22,6 @@ while True:
     if event == 'AssFuck':
         print("you fucked my ass!")
     if event == 'Ok':
-        print('You entered ', values[0])
+        print('You entered ', values['Userinput1'])
 
 window.close()

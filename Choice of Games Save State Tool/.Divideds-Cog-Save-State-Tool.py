@@ -1,115 +1,64 @@
-#This is the start file, the one the user clicks to start the program and does not tipicly get called
 from runpy import run_module, run_path
-import os
 from time import sleep
-#----------------------------------------------------- Debug -------------------------------------------------------
+import PySimpleGUI as sg
+import os, sys, glob
 
-def debug():
-    print("\nthis is the debug tool")
-    print("0. Exit Progam")
-    print("1. Exit debug tool")
-    print("2. Hello TXT")
-    print("3. Menu script")
-    Choice = int(input("What code do you want to run? > "))
-    if Choice == 0:
-        exit()
-
-    elif Choice == 1:
-        print("Exiting tool, runing as normal")
-
-    elif Choice == 2:
-        run_module(mod_name='Hellotxt')
-        debug()
-
-    elif Choice == 3:
-        run_module(mod_name='CogMenu')
-        debug()
-    else:
-        print("invalid anser")
-        debug()
 
 
 
 #----------------------------------------------------- First Run -------------------------------------------------------
 
-import glob
-# All files ending with .txt
-#print(glob.glob("First Run.txt")) 
-
 if glob.glob("First Run.txt"):
-    print("This has been run")
+    print("First Run.txt exists. Continuing to Main Menu")
 
 else:
 
     def FirstRun():
 
-        FirstRun1 = open(".\First Run.txt", "w")
-        FirstRun1.writelines("YES")
-        FirstRun1.close
+        YesNoButtonLayout = [
 
-        print("\nFirst Run txt has been added\n")
+            [sg.Button(button_text="Yes", button_color="Green"), sg.Button(button_text="No", button_color="Red")]
+            
+            ]
 
-        import subprocess
-        subprocess.call([r'Dependencies.bat'])
- 
-        sleep(1)
+        FirstRunWindowLayout = [
 
-        input("\n\ndependencys.bat is done, Making First run file. \n to run first start again del first run.txt\npress Enter")
+            [sg.Text('First Run.txt is not detected!')],
+            [sg.Text('Do you want to run the first run program to install dependencies?')],
+            [sg.Image(filename='./Loading.gif')],
+            [sg.Column(YesNoButtonLayout, key='__Yes_No_Button_Layout__', visible=True)]
+
+        ]
+
+        FirstRunWindow = sg.Window('First Run', FirstRunWindowLayout)
+        while True:
+            event, values = FirstRunWindow.read()
+            if event == sg.WIN_CLOSED:
+                sys.exit()
+            if event == 'No':
+                break
+            if event == 'Yes':
+                FirstRunWindow['__Yes_No_Button_Layout__'].update(visible=False)
+
+
+
+                # FirstRun1 = open(".\First Run.txt", "w")
+                # FirstRun1.writelines("This is the first file used to see if the program has been run before.")
+                # FirstRun1.close
+
+                # print("\nFirst Run txt has been added\n")
+
+                # import subprocess
+                # subprocess.call([r'Dependencies.bat'])
+        
+                # sleep(1)
+
+                print("\n\ndependencys.bat is done, Making First run file. \n to run first start again del first run.txt\npress Enter")
+
+                # break
+        FirstRunWindow.close()
 
     FirstRun()
 
+print("ass")
 #----------------------------------------------------- Code Start Code -------------------------------------------------------
-
-
-def CodeStart(): #d
-
-
-    run_module(mod_name='Hellotxt')
-
-    run_module(mod_name='CogMenu')
-
-    run_module(mod_name='0CogSST-GoodByetxt')
-
-    exit()
-
-def NewGamePlus():
-
-    NewGamePlus_Run = input(('Do You want to run "New Game Plus sript editer"? \n "Yes [Y] Or No [N] \n">'))
-
-    if NewGamePlus_Run == "y" or NewGamePlus_Run == "Y":
-        print("'Yes'")
-        print("\n\nNew Game Plus sript editer opening\n\n")
-        run_path(path_name='.NewGamePlus.py')
-        NewGamePlus_PostCMD()
-
-    elif NewGamePlus_Run == "n" or NewGamePlus_Run == "N":
-        print("'No'")
-        CodeStart()
-
-    else:
-        print("\n\nInvalid Answer!")
-        NewGamePlus()
-
-def NewGamePlus_PostCMD():
-    NewGamePlus_Post = input(("\n\n\nDo you want to run CogSST? or just quit now?\n\nRun [R] Or Quit [Q] \n>"))
-    
-    if NewGamePlus_Post == "R" or NewGamePlus_Post == "r":
-        print("Runing")
-
-    elif NewGamePlus_Post == "Q" or NewGamePlus_Post == "q":
-        print("Quiting")
-        run_path(path_name='0CogSST-GoodByetxt.py')
-        exit()
-        
-    else:
-        print("\n\nInvalid Answer!")
-        NewGamePlus_PostCMD()
-
-
-#----------------------------------------------------- Code Start -------------------------------------------------------
-
-# debug()
-
-NewGamePlus()
-
-CodeStart()
