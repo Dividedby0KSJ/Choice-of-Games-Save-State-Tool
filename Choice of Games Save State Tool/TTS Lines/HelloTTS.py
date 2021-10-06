@@ -1,7 +1,7 @@
 import pyttsx3
 from time import sleep
 
-VerNumber = str("0.9.0")
+VerNumber = str("0.9")
 
 # initialize Text-to-speech engine
 TTSEngine = pyttsx3.init()

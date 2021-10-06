@@ -8,12 +8,12 @@ sg.theme('Black')   # Add a touch of color
 
 # The text and imgage, to make it centerd i have to pass it into another layout
 HelloTxTlayoutC = [
-    [sg.Text("Wellcom to Divided's", font=("arial", 30))],
-    [sg.Text("Choice of Games Save state tool!", font=("arial", 30))],
-    [sg.Text("Made by 'Kieren St James'", font=("arial", 20),)],
-    [sg.Text("v.0.9.0", font=("arial", 20))],
-    [sg.Text("You can click the logo to skip to the menue", font=("impact", 16))],
-    [sg.Image(source=LogoBase64, size=(1080,720), enable_events=True, key='Logo')]
+    [sg.Text("Wellcom to Divided's", font=("arial", 30), text_color='Yellow')],
+    [sg.Text("Choice of Games Save state tool!", font=("arial", 30), text_color='Yellow')],
+    [sg.Text("Made by 'Kieren St James' (Divided By 0)", font=("arial", 20), text_color='lightgray')],
+    [sg.Text("v.0.9.0", font=("arial", 20), text_color='red')],
+    [sg.Text("You can click the logo to skip to the menue", font=("impact", 16), text_color='DarkGray')],
+    [sg.Image(source=LogoBase64, enable_events=True, key='Logo')]
 ]
 
 # Centers the text
@@ -22,7 +22,7 @@ HelloTxTlayout = [
 ]
 
 # Create the Window
-HelloTxTWindow = sg.Window("Wellcom To Divided's CogSST", HelloTxTlayout, size=(1080,720) ,auto_close=True, auto_close_duration=7)
+HelloTxTWindow = sg.Window("Wellcom To Divided's CogSST", HelloTxTlayout, size=(1150,730) ,auto_close=True, auto_close_duration=7)
 
 # Event Loop to process "events" and get the "values" of the inputs
 while True:
