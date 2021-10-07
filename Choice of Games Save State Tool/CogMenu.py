@@ -1,51 +1,45 @@
 from runpy import run_module, run_path
 import glob
+import PySimpleGUI as sg
+from PySimpleGUI.PySimpleGUI import Print
 
-#----------------------------------------------------- Menu -------------------------------------------------------
+sg.theme('Black')   # Add a touch of color
 
-# def Game_Menu():
-#     print("\n\n0. Exit")
-#     print("1. Avatar of the Wolf")
-
-#     Choice = int(input("Witch Game Do You Want To Mange > "))
-#     if Choice == 0:
-#         run_module(mod_name='0CogSST-GoodByetxt')
-
-#     elif Choice == 1:
-#         run_module(mod_name='Avatar_Of_The_Wolf')
-   
-#     else:
-#         print("\n\nInvalid Answer\n\n")
-#         Game_Menu()
-
-def Game_MenuV2():
-    # print("Dev Game_MenuV2")
-    print('0 Exit')
+def Gamelist():
     for n, each in enumerate(glob.glob('CogSST-*.py'), start=1):
         print(n, each)
 
+# Gamelist = for n, each in enumerate(glob.glob('CogSST-*.py'), start=1)
 
-    # print('0. Is Exit Program')
+CogSSTFile = 'NA'
 
-    # print(pyfile, each)    
-    ask = int(input("Witch Game Do You Want To Mange > "))
+CogMenuLayout = [
+    [sg.Input(), sg.FileBrowse('GogSST File', file_types=[("Python files", "CogSST-*.py")])],
+    [sg.Button(button_text="Open"), sg.Button(button_text="Cancel")],
+    # [sg.Text('Ass')],
+]
 
-    CogSST_File = glob.glob('*CogSST-*.py')[ask]
+CogMenuWindow = sg.Window('Game Manager', CogMenuLayout)
 
-    # print(CogSST_File)
+while True:
+    event, values = CogMenuWindow.read()
 
-    run_path(path_name=(CogSST_File))
+    if event == sg.WIN_CLOSED:
+        exit()
+    if event is None or event == 'Cancel':
+        break
 
-    # for n, each in enumerate(os.listdir()):
-    #     print(n, each)
+    if event == 'Open':
+        # print("Open Clicked")
+        CogSSTFile = values['GogSST File'] or 'NA'
+        
+        if CogSSTFile == 'NA':
+            print('Error! No Path Found!')
+        
+        else:
+            print("File Path: ",CogSSTFile)
+            CogMenuWindow.close()
+            run_path(path_name=(CogSSTFile))
+            break
 
-    # ask = int(input("Number? > "))
-    # 
-    # Restore_Folder_Name = os.listdir()[ask]
-
-
-#----------------------------------------------------- Code Start -------------------------------------------------------
-
-# Game_Menu()
-
-Game_MenuV2()
+CogMenuWindow.close()

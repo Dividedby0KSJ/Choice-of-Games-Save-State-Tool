@@ -1,13 +1,51 @@
-import pyttsx3, platform, glob
+import pyttsx3, platform, glob, sys, subprocess, os
+import PySimpleGUI as sg
+from time import sleep
+
+
 TTSEngine = pyttsx3.init()
 TTSEngine.setProperty('rate', 190)
-#-----------------------------------
+
+sg.theme('Black')   # Add a touch of color
+
+#-------------------------------------------------------------------------------------------------------------------------
 
 
-print("Wellcom to the game sripts maker! \nI am dev.")
-print("I need to ask a few things to make your Cog game compatable with this tool!")
-print("\nPlease look at 'Your Variables & Help.txt' to get more info!\n")
+#this makes 2 py files, one of them to make the 
+MasterOneLine = """\nimport os, subprocess\nfrom time import sleep\n\nOneLine = \"\"\"\\nimport pyttsx3\\n\\nTTSEngine = pyttsx3.init()\\nTTSEngine.setProperty('rate', 190)\\nTTSEngine.say("Wellcom to the game sripts maker! I need to ask a few things to make your Cog game compatible with this tool!")\\nTTSEngine.runAndWait()\\n\"\"\"\n\nwith open(".\\TTSLines.py", "w") as TTSLines:\n    TTSLines.writelines([OneLine])\n    TTSLines.close\n\nsubprocess.Popen(['TTSLines.py'], shell=True, creationflags=subprocess.SW_HIDE)\n\nsleep(1)\n\nos.remove("TTSLines.py")\n"""
 
+with open(".\TTSLinesRun.py", "w") as TTSLinesRun:
+    TTSLinesRun.writelines([MasterOneLine])
+    TTSLinesRun.close
+
+subprocess.Popen(['TTSLinesRun.py'], shell=True, creationflags=subprocess.SW_HIDE)
+
+#--------------------------------------------------------------------------------------------------------------------------
+NewGamePlusLaylout1 = [
+    [sg.Text('Wellcom to the game sripts maker! I am dev.')],
+    [sg.Text('\nI need to ask a few things to make your Cog game compatible with this tool!')],
+    [sg.Text("\nPlease look at 'Your Variables & Help.txt' to get more info!\n", text_color='dark gray')],
+    [sg.Button(button_text="Next", key="Next",)]
+]
+
+# print("Wellcom to the game sripts maker! \nI am dev.")
+# print("I need to ask a few things to make your Cog game compatable with this tool!")
+# print("\nPlease look at 'Your Variables & Help.txt' to get more info!\n")
+
+NewGamePlusWindow1 = sg.Window("Introduction", NewGamePlusLaylout1, font=('',17), element_justification='Center')
+
+while True:
+    event, values = NewGamePlusWindow1.read(timeout=100)
+    if event == sg.WIN_CLOSED:
+        exit()
+    if event == 'Next':
+        break
+
+NewGamePlusWindow1.close()
+
+sleep(0.2)
+
+os.remove("TTSLinesRun.py")
 
 #-----------------------------------
 
@@ -34,10 +72,33 @@ else:
     RootDirFile.close
 
 
-print("\n\n\n\nNow I need the name of the game or what you want the code to call the game.\n")
-print("!YOU CANNOT USE! The following reserved characters: < (less than) > (greater than) \n : (colon) [I cant show you it] (double quote) / (forward slash) \ (backslash) | (vertical bar or pipe) \n ? (question mark) * (asterisk) \n IF YOU DO IT WILL ERROR THE CODE AND NOT WORK\n")
-print("E.g: >>> Werewolves Haven Rising [O.G Name (Werewolves: Haven Rising)] <<<\n")
-Game_Name = input(("Game Name\n>"))
+NewGamePlusLaylout2_1GameName = [
+    [sg.Text("If you want to reset your saved RootDir, you can delete the 'RootDir.txt File'", text_color='DarkGray')],
+    [sg.Text('\nNow I need the name of the game or what you want the code to call the game.', font=('', 16))],
+    [sg.Text("! YOU CANNOT USE !", text_color='Red', font=('impact', 20))],
+    [sg.Text("The following reserved characters:\n < (less than) \n > (greater than) \n : (colon) \n '' (double quote) \n / (forward slash) \n \ (backslash) \n | (vertical bar or pipe) \n ? (question mark) \n * (asterisk) \n ", text_color='black', background_color='white')],
+    [sg.Text("! IF YOU DO IT WILL ERROR THE CODE AND NOT WORK !\n", text_color='Red', font=('impact', 20))],
+    [sg.Text("Original Name > 'Werewolves: Haven Rising'", justification='center')],
+    [sg.Text("Name You Should Use > Werewolves Haven Rising", justification='center')],
+    [sg.Text("Game Name >", justification='Right') , sg.Input(focus=True, key='Game_Name_Input'), sg.Button(button_text='Submit', button_color='Green')],
+]
+
+NewGamePlusWindow2 = sg.Window("Introduction", NewGamePlusLaylout2_1GameName, font=('',14), element_justification='Center')
+
+while True:
+    event, values = NewGamePlusWindow2.read(timeout=100)
+    if event == sg.WIN_CLOSED:
+        exit()
+    if event == 'Submit':
+        Game_Name = values['Game_Name_Input'] or 'ERROR'
+        break
+    
+NewGamePlusWindow2.close
+
+# print("\n\n\n\nNow I need the name of the game or what you want the code to call the game.\n")
+# print("!YOU CANNOT USE! The following reserved characters: < (less than) > (greater than) \n : (colon) [I cant show you it] (double quote) / (forward slash) \ (backslash) | (vertical bar or pipe) \n ? (question mark) * (asterisk) \n IF YOU DO IT WILL ERROR THE CODE AND NOT WORK\n")
+# print("E.g: >>> Werewolves Haven Rising [O.G Name (Werewolves: Haven Rising)] <<<\n")
+# Game_Name = input(("Game Name\n>"))
 
 if glob.glob("SteamID3.txt"): #if file is alredy available
     print("\n\n\n\nUsing The last SteamID3 That you inputed. \nIf you want to reset it than del the 'SteamID3.txt' File")
@@ -79,7 +140,9 @@ else: # Finds out what OSbit it is
 
     # print(OSbit)
 
+
 #---------------------------------------------------------------- Bit Prosesing -------------------------------------------------------
+ 
     def Bit64():
 
         Bit1 = open(".\Bit64.txt", "x")
@@ -91,22 +154,24 @@ else: # Finds out what OSbit it is
         Bit2 = open(".\Variables\Bit32.txt", "w")
         Bit2.writelines("32Bit OS or x86")
         Bit2.close
+
+
 #----------------------------------------------------- Bit Detections ---------------------------------------------------------------
 
+if OSbit == True:
+    print("this is 64bit")
+    Bit64()
 
-    if OSbit == True:
-        print("this is 64bit")
-        Bit64()
+elif OSbit == False:
+    print("this is not 64bit")
+    Bit32()
 
-    elif OSbit == False:
-        print("this is not 64bit")
-        Bit32()
+else:
+    print("this is not 64bit or 32bit \n ERROR: Unknown OSbit")
+    exit()
 
-    else:
-        print("this is not 64bit or 32bit \n ERROR: Unknown OSbit")
-        exit()
 
-#-----------------------------------
+#----------------------------------------------------------------------------------------------------------------------------------
 
 # The file to read from
 BassCode_File = open(".\Bass Code V2.py", "r")
@@ -124,15 +189,15 @@ NewGame.writelines(BassCode_Str)
 NewGame.close()
 
 
-BassCode_Str[18] ="    " + "RootDir = r'" +(RootDir) +"'\n"
+BassCode_Str[15] ="RootDir = r'" +(RootDir) +"'\n"
 
-BassCode_Str[21] ="    " + "Game_Name = r'" +(Game_Name) +"'\n"
+BassCode_Str[18] ="Game_Name = r'" +(Game_Name) +"'\n"
 
-BassCode_Str[26] ="    " + "steamID3 = " +(steamID3) +"\n"
+BassCode_Str[23] ="steamID3 = " +(steamID3) +"\n"
 
-BassCode_Str[30] ="    " + "Appid = " +(Appid) +"\n"
+BassCode_Str[27] ="Appid = " +(Appid) +"\n"
 
-BassCode_Str[33] ="    " + "OS_32_or_64 = " +(OS_32_or_64) +"\n"
+BassCode_Str[30] ="OS_32_or_64 = " +(OS_32_or_64) +"\n"
 
 NewGame = open("CogSST-" + (Game_Name) + ".py", "w")
 
