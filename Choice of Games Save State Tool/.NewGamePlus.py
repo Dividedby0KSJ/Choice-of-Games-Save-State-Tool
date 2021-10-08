@@ -12,7 +12,7 @@ sg.theme('Black')   # Add a touch of color
 
 
 #this makes 2 py files, one of them to make the 
-MasterOneLine = """\nimport os, subprocess\nfrom time import sleep\n\nOneLine = \"\"\"\\nimport pyttsx3\\n\\nTTSEngine = pyttsx3.init()\\nTTSEngine.setProperty('rate', 190)\\nTTSEngine.say("Wellcom to the game sripts maker! I need to ask a few things to make your Cog game compatible with this tool!")\\nTTSEngine.runAndWait()\\n\"\"\"\n\nwith open(".\\TTSLines.py", "w") as TTSLines:\n    TTSLines.writelines([OneLine])\n    TTSLines.close\n\nsubprocess.Popen(['TTSLines.py'], shell=True, creationflags=subprocess.SW_HIDE)\n\nsleep(1)\n\nos.remove("TTSLines.py")\n"""
+MasterOneLine = """\nimport pyttsx3\n\nTTSEngine = pyttsx3.init()\nTTSEngine.setProperty('rate', 190)\nTTSEngine.setProperty('volume',0.25)\nTTSEngine.say("Wellcom to the game sripts maker! I need to ask a few things to make your Cog game compatible with this tool!")\nTTSEngine.runAndWait()\n"""
 
 with open(".\TTSLinesRun.py", "w") as TTSLinesRun:
     TTSLinesRun.writelines([MasterOneLine])
@@ -21,7 +21,7 @@ with open(".\TTSLinesRun.py", "w") as TTSLinesRun:
 subprocess.Popen(['TTSLinesRun.py'], shell=True, creationflags=subprocess.SW_HIDE)
 
 #--------------------------------------------------------------------------------------------------------------------------
-NewGamePlusLaylout1 = [
+NewGamePlusLayout1 = [
     [sg.Text('Wellcom to the game sripts maker! I am dev.')],
     [sg.Text('\nI need to ask a few things to make your Cog game compatible with this tool!')],
     [sg.Text("\nPlease look at 'Your Variables & Help.txt' to get more info!\n", text_color='dark gray')],
@@ -32,7 +32,7 @@ NewGamePlusLaylout1 = [
 # print("I need to ask a few things to make your Cog game compatable with this tool!")
 # print("\nPlease look at 'Your Variables & Help.txt' to get more info!\n")
 
-NewGamePlusWindow1 = sg.Window("Introduction", NewGamePlusLaylout1, font=('',17), element_justification='Center')
+NewGamePlusWindow1 = sg.Window("Introduction", NewGamePlusLayout1, font=('',17), element_justification='Center')
 
 while True:
     event, values = NewGamePlusWindow1.read(timeout=100)
@@ -58,21 +58,63 @@ if glob.glob("RootDir.txt"): #if file is alredy available
     # ass
 
 else:
-    print("\nFirst I'm Going to need the path you want to store your save files\n")
-    print("E.g: >>> C:/Users/YourUserName/Saved Games/CogSST <<<\n")
-    print("its caled in this code RootDir. So please type the path without '' {Quotation Marks}\n And with '/' insead of 'BackSlash' \n")
-    print("\nOh And this is semi-permanent!! \nSo if you want to change this than you must delete the 'RootDir.txt' File as well as re-make your game save/load files\n")
+    # print("\nFirst I'm Going to need the path you want to store your save files\n")
+    # print("E.g: >>> C:/Users/YourUserName/Saved Games/CogSST <<<\n")
+    # print("its caled in this code RootDir. So please type the path without '' {Quotation Marks}\n And with '/' insead of 'BackSlash' \n")
+    # print("\nOh And this is semi-permanent!! \nSo if you want to change this than you must delete the 'RootDir.txt' File as well as re-make your game save/load files\n")
     # RootDir = input(("RootDir\n>"))
     # #assert
+
+    #this makes 2 py files, one of them to make the 
+    MasterOneLine = """\nimport pyttsx3\n\nTTSEngine = pyttsx3.init()\nTTSEngine.setProperty('rate', 200)\nTTSEngine.setProperty('volume',0.4)\nTTSEngine.say("First I'm Going to need the path you want to store your save files.")\nTTSEngine.say("..")\nTTSEngine.say("Oh And this is semi-permanent!! So if you want to change this than you must delete the 'RootDir.txt' File as well as re-make your game save/load files")\nTTSEngine.runAndWait()\n"""
+
+    with open(".\TTSLinesRun.py", "w") as TTSLinesRun:
+        TTSLinesRun.writelines([MasterOneLine])
+        TTSLinesRun.close
+
+    subprocess.Popen(['TTSLinesRun.py'], shell=True, creationflags=subprocess.SW_HIDE)
+
+
+    NewGamePlusLayout2_0RootDir = [
+        [sg.Text("First I'm Going to need the path you want to store your save files")],
+        [sg.Text("E.g: >>> C:/Users/YourUserName/Saved Games/CogSST <<<")],
+        [sg.Text("If you input the path manuly please type the path without '' {Quotation Marks}\n and with '/' insead of 'BackSlash' \nIts better if you just use the folder browser!", font=("", 20), text_color="Red")],
+        [sg.Text("\nOh And this is semi-permanent!! \nSo if you want to change this than you must delete the 'RootDir.txt' File as well as re-make your game save/load files")],
+        [sg.Text("Root Dir >", justification='Right') , sg.Input(focus=True, key='RootDir_Input'), sg.FolderBrowse('Folder'), sg.Button(button_text='Submit', button_color='Green')],
+    ]
+
+    NewGamePlusWindow1_2 = sg.Window("RootDir", NewGamePlusLayout2_0RootDir, font=('',14), element_justification='Center')
+
+    while True:
+        event, values = NewGamePlusWindow1_2.read(timeout=100)
+        if event == sg.WIN_CLOSED:
+            exit()
+        if event == 'Submit':
+            RootDir_Value = values['RootDir_Input'] or 'ERROR'
+            break
+        
+        
+    NewGamePlusWindow1_2.close()
+
+    os.remove("TTSLinesRun.py")
+
     RootDirFile = open(".\RootDir.txt", "x")
-    RootDirFile.writelines(input(("RootDir\n>")))
+    RootDirFile.writelines(RootDir_Value)
     RootDirFile.close
     RootDirFile = open(".\RootDir.txt", "r")
     RootDir = RootDirFile.readline()
     RootDirFile.close
 
+#this makes 2 py files, one of them to make the 
+MasterOneLine = """\nimport pyttsx3\n\nTTS = pyttsx3.init()\nTTS.setProperty('rate', 200)\nTTS.setProperty('volume',0.4)\n\nTTS.setProperty('rate', 300)\nTTS.say("If you want to reset your saved RootDir, you can delete the 'RootDir.txt File'")\nTTS.runAndWait()\n\nTTS.setProperty('rate', 200)\nTTS.say("Now I need the name of the game or what you want the code to call the game.")\nTTS.say(" Warning! You can not use the following reserved characters!")\nTTS.say("If you do it will error the code and not work.")\nTTS.runAndWait()\n"""
 
-NewGamePlusLaylout2_1GameName = [
+with open(".\TTSLinesRun.py", "w") as TTSLinesRun:
+    TTSLinesRun.writelines([MasterOneLine])
+    TTSLinesRun.close
+
+subprocess.Popen(['TTSLinesRun.py'], shell=True, creationflags=subprocess.SW_HIDE)
+
+NewGamePlusLayout2_1GameName = [
     [sg.Text("If you want to reset your saved RootDir, you can delete the 'RootDir.txt File'", text_color='DarkGray')],
     [sg.Text('\nNow I need the name of the game or what you want the code to call the game.', font=('', 16))],
     [sg.Text("! YOU CANNOT USE !", text_color='Red', font=('impact', 20))],
@@ -83,7 +125,7 @@ NewGamePlusLaylout2_1GameName = [
     [sg.Text("Game Name >", justification='Right') , sg.Input(focus=True, key='Game_Name_Input'), sg.Button(button_text='Submit', button_color='Green')],
 ]
 
-NewGamePlusWindow2 = sg.Window("Introduction", NewGamePlusLaylout2_1GameName, font=('',14), element_justification='Center')
+NewGamePlusWindow2 = sg.Window("Introduction", NewGamePlusLayout2_1GameName, font=('',14), element_justification='Center')
 
 while True:
     event, values = NewGamePlusWindow2.read(timeout=100)
@@ -93,7 +135,9 @@ while True:
         Game_Name = values['Game_Name_Input'] or 'ERROR'
         break
     
-NewGamePlusWindow2.close
+NewGamePlusWindow2.close()
+
+os.remove("TTSLinesRun.py")
 
 # print("\n\n\n\nNow I need the name of the game or what you want the code to call the game.\n")
 # print("!YOU CANNOT USE! The following reserved characters: < (less than) > (greater than) \n : (colon) [I cant show you it] (double quote) / (forward slash) \ (backslash) | (vertical bar or pipe) \n ? (question mark) * (asterisk) \n IF YOU DO IT WILL ERROR THE CODE AND NOT WORK\n")

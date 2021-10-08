@@ -1,14 +1,22 @@
-import os, subprocess
-from time import sleep
+import os
+import PySimpleGUI as sg
 
-OneLine = """\nimport pyttsx3\n\nTTSEngine = pyttsx3.init()\nTTSEngine.setProperty('rate', 190)\nTTSEngine.say("Wellcom to the game sripts maker! I need to ask a few things to make your Cog game compatible with this tool!")\nTTSEngine.runAndWait()\n"""
+Layout = [
+    [sg.Input(focus=True, key='AssFuck'), sg.FolderBrowse('Folder')],
+    [sg.Text("Game Name >", justification='Right') , sg.Button(button_text='Submit', button_color='Green')],
+]
 
-with open(".\TTSLines.py", "w") as TTSLines:
-    TTSLines.writelines([OneLine])
-    TTSLines.close
+Window = sg.Window("RootDir", Layout, font=('',14), element_justification='Center')
 
-subprocess.Popen(['TTSLines.py'], shell=True, creationflags=subprocess.SW_HIDE)
+while True:
+    event, values = Window.read(timeout=100)
+    if event == sg.WIN_CLOSED:
+        exit()
+    if event == 'Submit':
+        InputValue = values['AssFuck'] or 'ERROR'
+        # break
+        print (InputValue)
+    
+Window.close
 
-sleep(1)
-
-os.remove("TTSLines.py")
+DirWithBackSlash = r"C:\Users\Divided_By_Zero\Saved Games\CogSST"
