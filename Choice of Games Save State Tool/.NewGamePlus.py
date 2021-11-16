@@ -20,7 +20,7 @@ with open(".\TTSLinesRun.py", "w") as TTSLinesRun:
 
 subprocess.Popen(['TTSLinesRun.py'], shell=True, creationflags=subprocess.SW_HIDE)
 
-#--------------------------------------------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------------------------------------------------------------------------------------
 NewGamePlusLayout1 = [
     [sg.Text('Wellcom to the game sripts maker! I am dev.')],
     [sg.Text('\nI need to ask a few things to make your Cog game compatible with this tool!')],
@@ -47,7 +47,7 @@ sleep(0.2)
 
 os.remove("TTSLinesRun.py")
 
-#-----------------------------------
+#----------------------------------------------------------------------------------------------------------------------
 
 if glob.glob("RootDir.txt"): #if file is alredy available
     print("\n\n\n\nUsing The last RootDir That you inputed. \nIf you want to reset it than del the 'RootDir.txt' File")
@@ -58,12 +58,6 @@ if glob.glob("RootDir.txt"): #if file is alredy available
     # ass
 
 else:
-    # print("\nFirst I'm Going to need the path you want to store your save files\n")
-    # print("E.g: >>> C:/Users/YourUserName/Saved Games/CogSST <<<\n")
-    # print("its caled in this code RootDir. So please type the path without '' {Quotation Marks}\n And with '/' insead of 'BackSlash' \n")
-    # print("\nOh And this is semi-permanent!! \nSo if you want to change this than you must delete the 'RootDir.txt' File as well as re-make your game save/load files\n")
-    # RootDir = input(("RootDir\n>"))
-    # #assert
 
     #this makes 2 py files, one of them to make the 
     MasterOneLine = """\nimport pyttsx3\n\nTTSEngine = pyttsx3.init()\nTTSEngine.setProperty('rate', 200)\nTTSEngine.setProperty('volume',0.4)\nTTSEngine.say("First I'm Going to need the path you want to store your save files.")\nTTSEngine.say("..")\nTTSEngine.say("Oh And this is semi-permanent!! So if you want to change this than you must delete the 'RootDir.txt' File as well as re-make your game save/load files")\nTTSEngine.runAndWait()\n"""
@@ -78,15 +72,15 @@ else:
     NewGamePlusLayout2_0RootDir = [
         [sg.Text("First I'm Going to need the path you want to store your save files")],
         [sg.Text("E.g: >>> C:/Users/YourUserName/Saved Games/CogSST <<<")],
-        [sg.Text("If you input the path manuly please type the path without '' {Quotation Marks}\n and with '/' insead of 'BackSlash' \nIts better if you just use the folder browser!", font=("", 20), text_color="Red")],
+        [sg.Text("If you input the path manuly please type the path without '' {Quotation Marks}\nAnd with '/' insead of 'BackSlash' \n\nIts better if you just use the folder browser!", font=("", 20), text_color="Red")],
         [sg.Text("\nOh And this is semi-permanent!! \nSo if you want to change this than you must delete the 'RootDir.txt' File as well as re-make your game save/load files")],
         [sg.Text("Root Dir >", justification='Right') , sg.Input(focus=True, key='RootDir_Input'), sg.FolderBrowse('Folder'), sg.Button(button_text='Submit', button_color='Green')],
     ]
 
-    NewGamePlusWindow1_2 = sg.Window("RootDir", NewGamePlusLayout2_0RootDir, font=('',14), element_justification='Center')
+    NewGamePlusWindow2_0 = sg.Window("RootDir", NewGamePlusLayout2_0RootDir, font=('',14), element_justification='Center')
 
     while True:
-        event, values = NewGamePlusWindow1_2.read(timeout=100)
+        event, values = NewGamePlusWindow2_0.read(timeout=100)
         if event == sg.WIN_CLOSED:
             exit()
         if event == 'Submit':
@@ -94,7 +88,7 @@ else:
             break
         
         
-    NewGamePlusWindow1_2.close()
+    NewGamePlusWindow2_0.close()
 
     os.remove("TTSLinesRun.py")
 
@@ -125,24 +119,24 @@ NewGamePlusLayout2_1GameName = [
     [sg.Text("Game Name >", justification='Right') , sg.Input(focus=True, key='Game_Name_Input'), sg.Button(button_text='Submit', button_color='Green')],
 ]
 
-NewGamePlusWindow2 = sg.Window("Introduction", NewGamePlusLayout2_1GameName, font=('',14), element_justification='Center')
+NewGamePlusWindow2_1 = sg.Window("Game Name", NewGamePlusLayout2_1GameName, font=('',14), element_justification='Center')
 
 while True:
-    event, values = NewGamePlusWindow2.read(timeout=100)
+    event, values = NewGamePlusWindow2_1.read(timeout=100)
     if event == sg.WIN_CLOSED:
         exit()
     if event == 'Submit':
         Game_Name = values['Game_Name_Input'] or 'ERROR'
         break
     
-NewGamePlusWindow2.close()
+NewGamePlusWindow2_1.close()
 
 os.remove("TTSLinesRun.py")
 
-# print("\n\n\n\nNow I need the name of the game or what you want the code to call the game.\n")
-# print("!YOU CANNOT USE! The following reserved characters: < (less than) > (greater than) \n : (colon) [I cant show you it] (double quote) / (forward slash) \ (backslash) | (vertical bar or pipe) \n ? (question mark) * (asterisk) \n IF YOU DO IT WILL ERROR THE CODE AND NOT WORK\n")
-# print("E.g: >>> Werewolves Haven Rising [O.G Name (Werewolves: Haven Rising)] <<<\n")
-# Game_Name = input(("Game Name\n>"))
+
+
+#--------------------------------------------------------------------------------------------------------------------------------------------
+
 
 if glob.glob("SteamID3.txt"): #if file is alredy available
     print("\n\n\n\nUsing The last SteamID3 That you inputed. \nIf you want to reset it than del the 'SteamID3.txt' File")
@@ -155,13 +149,48 @@ if glob.glob("SteamID3.txt"): #if file is alredy available
 else:
 
     print("\n\n\n\nNow I need your steamID3 without the '[]' OR 'U:1:'\nUse steamid.io to get yous\n\nRemeber! DO NOT INCLUDE THE '[]' OR 'U:1:'")
+
+
+    NewGamePlusLayout2_2SteamID3 = [
+    [sg.Text("If you want to reset your saved SteamID3, you can delete the 'SteamID3.txt File'", text_color='DarkGray')],
+    [sg.Text('\nNow I need your steamID3', font=('', 16))],
+    [sg.Text("! Without the following !", text_color='Red', font=('impact', 20))],
+    [sg.Text("[]", text_color='black', background_color='white')],
+    [sg.Text("U:1:", text_color='black', background_color='white')],
+    [sg.Text("! IF YOU DO IT WILL ERROR THE CODE AND NOT WORK !\n", text_color='Red', font=('impact', 20))],
+    [sg.Text("Original SteamID3 > 'Werewolves: Haven Rising'", justification='center')],
+    [sg.Text("SteamID3 You Should Use > Werewolves Haven Rising", justification='center')],
+    [sg.Text("SteamID3 >", justification='Right') , sg.Input(focus=True, key='SteamID3_Input'), sg.Button(button_text='Submit', button_color='Green')],
+
+    ]
+
+    NewGamePlusWindow2_2 = sg.Window("SteamID3", NewGamePlusLayout2_2SteamID3, font=('',14), element_justification='Center')
+
+    while True:
+        event, values = NewGamePlusWindow2_2.read(timeout=100)
+        if event == sg.WIN_CLOSED:
+            exit()
+        if event == 'Submit':
+            SteamID3_Value = values['SteamID3_Input'] or 'ERROR'
+            break
+        
+        
+    NewGamePlusWindow2_2.close()
+
+    os.remove("TTSLinesRun.py")
+
+
     # steamID3 = input(("steamID3\n>"))
     SteamID3File = open(".\SteamID3.txt", "x")
-    SteamID3File.writelines(input(("steamID3\n>")))
+    SteamID3File.writelines(SteamID3_Value)
     SteamID3File.close
     SteamID3File = open(".\SteamID3.txt", "r")
     steamID3 = SteamID3File.readline()
     SteamID3File.close
+
+
+#--------------------------------------------------------------------------------------------------------------------------------------------
+
 
 print("\n\n\n\nOK this is (almost) the last one!\nI need the Appid of the game.\nGoto steamdb.info and serch your games name and copy paste the App ID here!")
 Appid = input(("Appid\n>"))
@@ -169,7 +198,7 @@ Appid = input(("Appid\n>"))
 # print("\n\n\n\nOK. OK. OK... THIS is the last one and it is the simplest one\nWhat is your windows os bit? it can only be 32 or 64 (or the code wont work)\n and you can only input 32 or 64\nIf you dont know, open 'System Information' and look under 'System type' if it says x64-based than you are 64.\n")
 # OS_32_or_64 = input(("OS_32_or_64\n>"))
 
-#------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+#---------------------------------------------------------------- Bit Prosesing -------------------------------------------------------
 if glob.glob("Bit64.txt"): #if file is alredy available
     print("64bit")
     OS_32_or_64 = "64"
@@ -185,34 +214,37 @@ else: # Finds out what OSbit it is
     # print(OSbit)
 
 
-#---------------------------------------------------------------- Bit Prosesing -------------------------------------------------------
  
     def Bit64():
 
         Bit1 = open(".\Bit64.txt", "x")
         Bit1.writelines("64Bit OS, the beast one!")
         Bit1.close
+        print("64bit")
+
+        OS_32_or_64 = "64"
 
     def Bit32():
 
         Bit2 = open(".\Variables\Bit32.txt", "w")
         Bit2.writelines("32Bit OS or x86")
         Bit2.close
+        print("32bit")
 
+        OS_32_or_64 = "32"
 
-#----------------------------------------------------- Bit Detections ---------------------------------------------------------------
+# Bit Detections -----------------------
+    if OSbit == True:
+        print("this is 64bit")
+        Bit64()
 
-if OSbit == True:
-    print("this is 64bit")
-    Bit64()
+    elif OSbit == False:
+        print("this is not 64bit")
+        Bit32()
 
-elif OSbit == False:
-    print("this is not 64bit")
-    Bit32()
-
-else:
-    print("this is not 64bit or 32bit \n ERROR: Unknown OSbit")
-    exit()
+    else:
+        print("this is not 64bit or 32bit \n ERROR: Unknown OSbit")
+        exit()
 
 
 #----------------------------------------------------------------------------------------------------------------------------------
