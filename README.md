@@ -19,7 +19,7 @@ This is the point of this tool.
 # How to use
 
 This code has gone through (and is currently being remade) major code changes!
-As far as i know, the latest comand line release is the most stable.
+As far as i know, the latest comand line release is the most stable. [THIS IS THE CMD RELEASE]
 In my brake I have been learning and now have better practecs.
 pleas be patent.
 
