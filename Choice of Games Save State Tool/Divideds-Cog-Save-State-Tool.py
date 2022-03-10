@@ -1,19 +1,22 @@
 import glob, os, subprocess
 from time import sleep
+from runpy import run_module, run_path
 
+#----------------------------------------------------- OS Dir Check -------------------------------------------------------
+
+# System 32 Dir Check
 Sys32 = os.getcwd()
 if Sys32 == "C:\WINDOWS\system32":
     print ("!!! For some reason, the program has started in System32! !!! \nThe program can not run in this directory. please check the help file for how to fix")
     input("Press enter to exit...")
     exit()
 
-
 # Check if If in the github directory or in the Release directory
 if os.path.exists(r"./Choice of Games Save State Tool") :
     # Change the current working Directory    
     os.chdir(r"./Choice of Games Save State Tool")
-else:
-    print("Can't change the Current Working Directory\nOr Already in correct directory.")
+# else:
+#     print("Can't change the Current Working Directory\nOr Already in correct directory.")
 
 #----------------------------------------------------- Wait.txt Clean -------------------------------------------------------
 
@@ -42,14 +45,12 @@ else:
         sleep(2) #this is to ensure that the .bat file makes the Wait.txt file.
 
         # This it a infinite loop that keeps waiting until the Wait.txt file is deleted (not found)
-        def WaitFirstSetup():
-
+        while True:
             if glob.glob(r'.\First Run Scripts\Wait.txt'):
-                sleep(0.5)
-                WaitFirstSetup()
+                sleep(1)
             else:
                 print("Wait.txt gone, proceeding")
-        WaitFirstSetup()
+                break
 
         # Add's a file in the <\First Run Scripts> Dir to tell the program that the dependencys are instaled
         FirstRun1 = open(r'.\First Run Scripts\First Run.txt', "x")
@@ -59,3 +60,5 @@ else:
         print("\nFirst Run txt has been added\n")
 
     FirstRun()
+
+run_path(path_name=".\.Root\CodeStart.py")
