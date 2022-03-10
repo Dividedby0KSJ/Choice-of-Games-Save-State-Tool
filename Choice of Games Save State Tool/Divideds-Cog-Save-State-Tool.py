@@ -1,8 +1,19 @@
-from runpy import run_module, run_path
+import glob, os, subprocess
 from time import sleep
-import PySimpleGUI as sg
-import os, sys, glob, pyttsx3, subprocess
 
+Sys32 = os.getcwd()
+if Sys32 == "C:\WINDOWS\system32":
+    print ("!!! For some reason, the program has started in System32! !!! \nThe program can not run in this directory. please check the help file for how to fix")
+    input("Press enter to exit...")
+    exit()
+
+
+# Check if If in the github directory or in the Release directory
+if os.path.exists(r"./Choice of Games Save State Tool") :
+    # Change the current working Directory    
+    os.chdir(r"./Choice of Games Save State Tool")
+else:
+    print("Can't change the Current Working Directory\nOr Already in correct directory.")
 
 #----------------------------------------------------- Wait.txt Clean -------------------------------------------------------
 
@@ -24,9 +35,9 @@ else:
 
     def FirstRun():
      
-        subprocess.Popen([r'.\First Run Scripts\First Run TTS.py'], shell=True, creationflags=subprocess.SW_HIDE)
+        subprocess.Popen([r".\First Run Scripts\First Run TTS.py"], shell=True, creationflags=subprocess.SW_HIDE)
 
-        subprocess.call([r'.\First Run Scripts\Dependencies.bat'])
+        subprocess.Popen([r'.\First Run Scripts\Dependencies.bat'], shell=True)
 
         sleep(2) #this is to ensure that the .bat file makes the Wait.txt file.
 
@@ -50,6 +61,11 @@ else:
     FirstRun()
 
 #----------------------------------------------------- Code Start Code -------------------------------------------------------
+
+from runpy import run_module, run_path
+import PySimpleGUI as sg
+import sys, pyttsx3
+
 
 exit()
 
