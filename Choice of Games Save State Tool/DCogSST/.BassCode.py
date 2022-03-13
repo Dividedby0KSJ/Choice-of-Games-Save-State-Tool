@@ -1,3 +1,4 @@
+
 # There needs to be a blank line at the start of the file, its for the BassCode_Str[#], because you have to use the line number -1 (I dont know why, but you do). 
 #-------------------------------------------------- Copy all code below -------------------------------------------------------
 import datetime, os, shutil, pyttsx3, subprocess

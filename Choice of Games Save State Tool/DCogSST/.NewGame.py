@@ -268,10 +268,12 @@ else: # Finds out what OSbit it is
     if OSbit == True:
         print("this is 64bit")
         Bit64()
+        OS_32_or_64 = "64"
 
     elif OSbit == False:
         print("this is not 64bit")
         Bit32()
+        OS_32_or_64 = "32"
 
     else:
         subprocess.Popen([r".\TTS\NewGame\BitOsError.py"], shell=True, creationflags=subprocess.SW_HIDE)
@@ -297,7 +299,7 @@ BassCode_Str = BassCode_File.readlines()
 BassCode_File.close()
 
 
-NewGame = open("CogSST-" + (Game_Name) + ".py", "w")
+NewGame = open(".\DCogSST\CogSST-" + (Game_Name) + ".py", "w")
 
 NewGame.writelines(BassCode_Str)
 
@@ -314,7 +316,7 @@ BassCode_Str[26] ="Appid = " +(Appid) +"\n"
 
 BassCode_Str[29] ="OS_32_or_64 = " +(OS_32_or_64) +"\n"
 
-NewGame = open("CogSST-" + (Game_Name) + ".py", "w")
+NewGame = open(".\DCogSST\CogSST-" + (Game_Name) + ".py", "w")
 
 new_file_contents = "".join(BassCode_Str)
 
