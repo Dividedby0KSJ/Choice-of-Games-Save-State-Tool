@@ -62,7 +62,7 @@ HelloTxTlayoutC = [
     [sg.Text("Wellcom to Divided's", font=("arial", 30), text_color='Yellow')],
     [sg.Text("Choice of Games Save state tool!", font=("arial", 30), text_color='Yellow')],
     [sg.Text("Made by 'Kieren St James' (Divided By 0)", font=("arial", 20), text_color='lightgray')],
-    [sg.Text("Revision #2 v.0.0.6", font=("arial", 20), text_color='red')],
+    [sg.Text("Revision #2 v.0.8", font=("arial", 20), text_color='red')],
     [sg.Text("You can click the logo to skip to the menue", font=("impact", 16), text_color='DarkGray')],
     [sg.Image(source=DCogStt_64, enable_events=True, key='Logo')]
 ]
