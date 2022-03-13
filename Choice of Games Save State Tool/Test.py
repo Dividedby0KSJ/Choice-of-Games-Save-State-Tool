@@ -1,56 +1,32 @@
-# There needs to be a blank line at the start of the file, its for the BassCode_Str[#], because you have to use the line number -1 (I dont know why, but you do). 
-#-------------------------------------------------- Copy all code below -------------------------------------------------------
 import datetime, os, shutil, pyttsx3, subprocess
 import PySimpleGUI as sg
 from time import sleep
-
-# initialize Text-to-speech engine
-TTSEngine = pyttsx3.init()
-TTSEngine.setProperty('rate', 190)
+sg.theme('Black')   # PySimpleGUI Theme
 
 #------------------------------------------------------- User Input -------------------------------------------------------
 
 # The Dir where the save states will be added
-RootDir = r"C:/Users/User/Saved Games/CogSST"
+RootDir = r"C:/Users/Divided_By_Zero/.Git/Choice-of-Games-Save-State-Tool/Choice of Games Save State Tool/DCogSST"
 
 # The games name or what you want the program to call the game
-Game_Name = r"Game Name"
+Game_Name = r"ASS"
 
 # This is you steam ID 3, for exampil yous might look like [U:1:123456789] you need the last set of numbers, not the 'U:1:'
 # or the [], so take out the [U:1:] and leave the other numbers and put them in the steamID3 tag
 # use this website to get your steamID3: https://steamid.io or https://steamidfinder.com
-steamID3 = 123456789
+steamID3 = 160046958
 
 # The Cog App ID of the game you want to manage
 # Check this link for the game id's for all of Cog gmames: https://steamdb.info/search/?a=app_keynames&type=-1&keyname=23&operator=3&keyvalue=Choice+of+Games
-Appid = 123456789
-
+Appid = 800620
 # put here wether your os is 32bit or 64bit | put ether 32 or 64 as just numbers, leave out the "bit"
-OS_32_or_64 = 0
+OS_32_or_64 = 64
 
 #-------------------------------------------------------- Save Path -------------------------------------------------------
 
 if OS_32_or_64 == 64:
     print("OS is 64bit \n")
     Save_Path = r"C:/Program Files (x86)/Steam/userdata/"+ str(steamID3) +"/"+ str(Appid) +"/remote"
-
-elif OS_32_or_64 == 32:
-    print("OS is 32bit, why tho? \nLike just update to 64bit man\n")
-    Save_Path = r"C:/Program Files/Steam/userdata/"+ str(steamID3) +"/"+ str(Appid) +"/remote"
-
-else:
-    Error_OsBit = "You need to state wether the OS is 32 bit or 64 bit in the game saveload file!"
-    print((Error_OsBit) + "\nNow closing")
-    TTSEngine.say ((Error_OsBit) + ". Now Closing")
-    TTSEngine.runAndWait()
-    exit()
-
-# Path to the games Save Files, It might be difrent on other PC's. Add you steam Numbers and game numbers
-
-# Save_Path = r"C:/Program Files (x86)/Steam/userdata/UserNumbers/Game/remote"
-
-# ^^^^^ this is an overide if you need it, witch you probubly wont, but basicly you just put you steamID3 in "UserNumbers"
-# and Appid in "Game". and if you are not 64bit than take out " (x86)".
 
 #-------------------------------------------------------- Variable's -------------------------------------------------------
 
@@ -60,9 +36,9 @@ FileDateAndTime = datetime.datetime.now()
 # Basicly it the subfolder that the time and date folder is going to go in.
 Save_SubFolder = Game_Name + r"/"
 
-#-------------------------------------------------------- Save -------------------------------------------------------               
+#-------------------------------------------------------- Save -------------------------------------------------------
 
-# Save function, make a folder with the date and time
+
 def Game_Save(): 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -142,71 +118,31 @@ def Game_Save():
 
     Game_SaveLoad_Menu()
 
+
 #-------------------------------------------------------- Load -------------------------------------------------------
 
-# Load Function, list the saved folders in the [ RootDir + Save_SubFolder ] and ask's the users witch to select to load
+
 def Game_Load():
+    print("Game_Load run")
 
-    os.chdir(RootDir)
+    Game_LoadLayout = [
+        [sg.Text("Fuck you in the ASS"), sg.Button(button_text="Back", key="back")]
+    ]
 
-    os.chdir(Save_SubFolder)
+    Game_LoadWindow = sg.Window("load", Game_LoadLayout)
 
-    for n, each in enumerate(os.listdir()):
-        print(n, each)
-
-    ask = int(input("Number? > "))
-
-    Restore_Folder_Name = os.listdir()[ask]
-
-    Restore_Folder_Path = RootDir + "/" + Save_SubFolder + Restore_Folder_Name
-
-    # This gets rid of the numbers in the Restore_Folder_Name so the TTS only says the Save Name
-    Restore_Folder_TTS = ''.join([i for i in Restore_Folder_Name if not i.isdigit()])
+    while True:
+        event, values = Game_LoadWindow.read(timeout=100)
+        if event == sg.WIN_CLOSED:
+            exit()
+        if event == 'back':
+            Game_LoadWindow.close()
+            Game_SaveLoad_Menu()
 
 
-    TTSEngine.say((Restore_Folder_TTS) + " is selected ")
-    print("\n" + (Restore_Folder_Name) + " is selected ")
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    TTSEngine.say("This is the folder path of what you selected.")
-    print("\n '" + (Restore_Folder_Path) + "'\nIs the folder Path of what you selected. ")
 
-    TTSEngine.runAndWait()
-
-    TTSEngine.say("Are you sure?")
-    print("Are you sure? \n")
-
-    TTSEngine.runAndWait()
-
-    Load_Confirm = input(("Yes [Y] Or No [N] \n"))
-
-    if Load_Confirm == "y" or Load_Confirm == "Y":
-        TTSEngine.say("Continuing")
-        print("'Yes'")
-        TTSEngine.runAndWait()
-
-    elif Load_Confirm == "n" or Load_Confirm == "N":
-        TTSEngine.say("Cancelling")
-        print("'No'")
-        TTSEngine.runAndWait()
-        Game_SaveLoad_Menu()
-
-    else:
-        TTSEngine.say("Invalid Answer!")
-        print("\n\nInvalid Answer!")
-        TTSEngine.runAndWait()
-        Game_Load()
-
-    # print(Load_Confirm) # This is a debug, ignor this
-    
-    shutil.copytree(src=Restore_Folder_Path,
-                    dst=Save_Path, dirs_exist_ok=True)
-    anykey = input("Press the 'Enter' key to go back to the menu")
-    Game_SaveLoad_Menu()
-
-    
-#-------------------------------------------------------- Menue -------------------------------------------------------
-
-# Menu to save, load, Game Menu and Exit program
 def Game_SaveLoad_Menu():
 
     Game_SaveAndLoad_MenuLayout = [
@@ -229,31 +165,5 @@ def Game_SaveLoad_Menu():
             print("Load")
             Game_SaveAndLoad_MenuWindow.close()
             Game_Load()
-
-
-    # print("1. Save")
-    # print("2. Load")
-
-    # Choice = int(input("Save or Load? > "))
-
-    # # Save
-    # if Choice == 1:
-    #     TTSEngine.say("Save, What is the Save Name?")
-    #     print("Save \nWhat is the Save Name?")
-    #     TTSEngine.runAndWait()
-    #     Game_Save()
-
-    # # Load
-    # elif Choice == 2:
-    #     TTSEngine.say("Load")
-    #     print("Load")
-    #     TTSEngine.runAndWait()
-    #     Game_Load()
-
-#-------------------------------------------------------- Code Start -------------------------------------------------------
-
-TTSEngine.say("This is the Save Load menu for " + (Game_Name))
-print("\033[04mThis is the Save Load menu for " + (Game_Name) + "\033[0m")
-TTSEngine.runAndWait()
 
 Game_SaveLoad_Menu()
