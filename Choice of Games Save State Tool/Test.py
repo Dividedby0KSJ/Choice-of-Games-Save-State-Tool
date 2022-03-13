@@ -123,21 +123,77 @@ def Game_Save():
 
 
 def Game_Load():
-    print("Game_Load run")
 
-    Game_LoadLayout = [
-        [sg.Text("Fuck you in the ASS"), sg.Button(button_text="Back", key="back")]
+    Game_LoadLayout1 = [
+        [sg.Text("Use the file browser to open the folder (Save State) that you want to restore")],
+        [sg.Input(key="Restore_Folder_Path_Input", default_text=(RootDir + "/" + Save_SubFolder + "Save State Folder")), sg.FolderBrowse('Save State Folder', button_color='#009dff', initial_folder=(RootDir + "/" + Save_SubFolder)), sg.Button(button_text='Submit', button_color='Green')]
     ]
 
-    Game_LoadWindow = sg.Window("load", Game_LoadLayout)
+
+    Game_LoadWindow = sg.Window("Load", Game_LoadLayout1, element_justification='Center', font=("Roboto", 20))
 
     while True:
         event, values = Game_LoadWindow.read(timeout=100)
         if event == sg.WIN_CLOSED:
             exit()
-        if event == 'back':
+        if event == 'Submit':
+            Restore_Folder_Path = values['Restore_Folder_Path_Input'] or 'ERROR'
+            break
+
+    Game_LoadWindow.close()
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    os.chdir(RootDir)
+
+    os.chdir(Save_SubFolder)
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    Game_LoadLayout2 = [
+        [sg.Text("Are you sure?")],
+        [sg.Button(button_text="Yes"), sg.Button(button_text="No")],
+    ]
+
+    Game_LoadWindow = sg.Window("Load", Game_LoadLayout2, element_justification='Center', font=("Roboto", 20))
+
+    while True:
+        event, values = Game_LoadWindow.read(timeout=100)
+        if event == sg.WIN_CLOSED:
+            exit()
+        if event == 'Yes':
+            break
+        if event == 'No':
             Game_LoadWindow.close()
             Game_SaveLoad_Menu()
+
+    Game_LoadWindow.close()
+
+
+    shutil.copytree(src=Restore_Folder_Path,
+                    dst=Save_Path, dirs_exist_ok=True)
+
+
+    Game_LoadLayout3 = [
+        [sg.Text("Press the 'Continue' button to go back to the menu")],
+        [sg.Button(button_text="Continue", key="Continue")],
+    ]
+
+    Game_LoadWindow = sg.Window("Load", Game_LoadLayout3, element_justification='Center', font=("Roboto", 20))
+
+    while True:
+        event, values = Game_LoadWindow.read(timeout=100)
+        if event == sg.WIN_CLOSED:
+            exit()
+        if event == 'Continue':
+            break
+
+    Game_LoadWindow.close()
+
+
+
+    Game_SaveLoad_Menu()
+
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

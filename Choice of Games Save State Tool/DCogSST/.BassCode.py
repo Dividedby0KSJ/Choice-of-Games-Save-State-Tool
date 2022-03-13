@@ -142,65 +142,80 @@ def Game_Save():
 
     Game_SaveLoad_Menu()
 
+
 #-------------------------------------------------------- Load -------------------------------------------------------
 
 # Load Function, list the saved folders in the [ RootDir + Save_SubFolder ] and ask's the users witch to select to load
 def Game_Load():
 
+    Game_LoadLayout1 = [
+        [sg.Text("Use the file browser to open the folder (Save State) that you want to restore")],
+        [sg.Input(key="Restore_Folder_Path_Input", default_text=(RootDir + "/" + Save_SubFolder + "Save State Folder")), sg.FolderBrowse('Save State Folder', button_color='#009dff', initial_folder=(RootDir + "/" + Save_SubFolder)), sg.Button(button_text='Submit', button_color='Green')]
+    ]
+
+
+    Game_LoadWindow = sg.Window("Load", Game_LoadLayout1, element_justification='Center', font=("Roboto", 20))
+
+    while True:
+        event, values = Game_LoadWindow.read(timeout=100)
+        if event == sg.WIN_CLOSED:
+            exit()
+        if event == 'Submit':
+            Restore_Folder_Path = values['Restore_Folder_Path_Input'] or 'ERROR'
+            break
+
+    Game_LoadWindow.close()
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
     os.chdir(RootDir)
 
     os.chdir(Save_SubFolder)
 
-    for n, each in enumerate(os.listdir()):
-        print(n, each)
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    ask = int(input("Number? > "))
+    Game_LoadLayout2 = [
+        [sg.Text("Are you sure?")],
+        [sg.Button(button_text="Yes"), sg.Button(button_text="No")],
+    ]
 
-    Restore_Folder_Name = os.listdir()[ask]
+    Game_LoadWindow = sg.Window("Load", Game_LoadLayout2, element_justification='Center', font=("Roboto", 20))
 
-    Restore_Folder_Path = RootDir + "/" + Save_SubFolder + Restore_Folder_Name
+    while True:
+        event, values = Game_LoadWindow.read(timeout=100)
+        if event == sg.WIN_CLOSED:
+            exit()
+        if event == 'Yes':
+            break
+        if event == 'No':
+            Game_LoadWindow.close()
+            Game_SaveLoad_Menu()
 
-    # This gets rid of the numbers in the Restore_Folder_Name so the TTS only says the Save Name
-    Restore_Folder_TTS = ''.join([i for i in Restore_Folder_Name if not i.isdigit()])
+    Game_LoadWindow.close()
 
 
-    TTSEngine.say((Restore_Folder_TTS) + " is selected ")
-    print("\n" + (Restore_Folder_Name) + " is selected ")
-
-    TTSEngine.say("This is the folder path of what you selected.")
-    print("\n '" + (Restore_Folder_Path) + "'\nIs the folder Path of what you selected. ")
-
-    TTSEngine.runAndWait()
-
-    TTSEngine.say("Are you sure?")
-    print("Are you sure? \n")
-
-    TTSEngine.runAndWait()
-
-    Load_Confirm = input(("Yes [Y] Or No [N] \n"))
-
-    if Load_Confirm == "y" or Load_Confirm == "Y":
-        TTSEngine.say("Continuing")
-        print("'Yes'")
-        TTSEngine.runAndWait()
-
-    elif Load_Confirm == "n" or Load_Confirm == "N":
-        TTSEngine.say("Cancelling")
-        print("'No'")
-        TTSEngine.runAndWait()
-        Game_SaveLoad_Menu()
-
-    else:
-        TTSEngine.say("Invalid Answer!")
-        print("\n\nInvalid Answer!")
-        TTSEngine.runAndWait()
-        Game_Load()
-
-    # print(Load_Confirm) # This is a debug, ignor this
-    
     shutil.copytree(src=Restore_Folder_Path,
                     dst=Save_Path, dirs_exist_ok=True)
-    anykey = input("Press the 'Enter' key to go back to the menu")
+
+
+    Game_LoadLayout3 = [
+        [sg.Text("Press the 'Continue' button to go back to the menu")],
+        [sg.Button(button_text="Continue", key="Continue")],
+    ]
+
+    Game_LoadWindow = sg.Window("Load", Game_LoadLayout3, element_justification='Center', font=("Roboto", 20))
+
+    while True:
+        event, values = Game_LoadWindow.read(timeout=100)
+        if event == sg.WIN_CLOSED:
+            exit()
+        if event == 'Continue':
+            break
+
+    Game_LoadWindow.close()
+
+
+
     Game_SaveLoad_Menu()
 
     
