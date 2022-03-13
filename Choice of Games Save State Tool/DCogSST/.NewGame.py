@@ -1,6 +1,6 @@
 import PySimpleGUI as sg
 from time import sleep
-import os, subprocess, glob
+import os, subprocess, glob, platform
 
 sg.theme('Black')   # PySimpleGUI Theme
 
@@ -141,8 +141,8 @@ while True:
     if event == 'Submit':
         Game_Name = values['Game_Name_Input'] or 'ERROR'
         break
-  
-    
+
+
 NewGameWindowGame_Name.close()
 
 
@@ -197,3 +197,126 @@ else:
     SteamID3File = open(".\Variables\SteamID3.txt", "r")
     steamID3 = SteamID3File.readline()
     SteamID3File.close
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Page 5 [Appid] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# The Long term plan for this is to make a database of all the Cog's and let the user select the one thay want (with the option of manul input)
+# For now though I want the program to just work so it will only be manul input
+
+subprocess.Popen([r".\TTS\NewGame\Page5.py"], shell=True, creationflags=subprocess.SW_HIDE)
+
+NewGameLayoutAppid = [
+    [sg.Text("If you want to reset your saved SteamID3, you have to delete the 'SteamID3.txt File'", text_color='DarkGray')],
+    [sg.Text('\nNow I need the App ID of the game.')],
+    [sg.Text("\nUse steamdb.info to get the AppID of the game you want to save")],
+    [sg.Text("App ID >", justification='Right') , sg.Input(focus=True, key='Appid_Input'), sg.Button(button_text='Submit', button_color='Green')],
+]
+
+
+NewGameWindowAppid = sg.Window("App ID", NewGameLayoutAppid, font=('Helvitica',14), element_justification='Center')
+
+
+while True:
+    event, values = NewGameWindowAppid.read(timeout=100)
+    if event == sg.WIN_CLOSED:
+        exit()
+    if event == 'Submit':
+        Appid = values['Appid_Input'] or 'ERROR'
+        break
+
+
+NewGameWindowAppid.close()
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Page ? [OS Bit Prosesing] ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# This is automatic so no user input is required
+
+if glob.glob(".\Variables\Bit64.txt"): #if file is alredy available
+    print("64bit")
+    print("Allredy run")
+    OS_32_or_64 = "64"
+
+elif glob.glob(".\Variables\Bit32.txt"): #if file is alredy available
+    print("32bit")
+    print("Allredy run")
+    OS_32_or_64 = "32"
+
+else: # Finds out what OSbit it is
+
+    OSbit = platform.machine().endswith('64')
+
+    print(OSbit)
+
+    def Bit64():
+
+        Bit1 = open(".\Variables\Bit64.txt", "x")
+        Bit1.writelines("64Bit OS, the beast one!")
+        Bit1.close
+        print("64bit")
+
+        OS_32_or_64 = "64"
+
+    def Bit32():
+
+        Bit2 = open(".\Variables\Bit32.txt", "x")
+        Bit2.writelines("32Bit OS or x86")
+        Bit2.close
+        print("32bit")
+
+        OS_32_or_64 = "32"
+
+# Bit Detections -----------------------
+    if OSbit == True:
+        print("this is 64bit")
+        Bit64()
+
+    elif OSbit == False:
+        print("this is not 64bit")
+        Bit32()
+
+    else:
+        subprocess.Popen([r".\TTS\NewGame\BitOsError.py"], shell=True, creationflags=subprocess.SW_HIDE)
+
+        print("\nThe program cannot detect the os bit!")
+        print("Make sure that you are running this program in windows!")
+        print("If you are, and want to force the program to continue!")
+        print("Make a .txt file in the Variables directory with the architecturey you are running in!")
+        print("Example: Bit32.txt or Bit64.txt!")
+
+        input("Press enter to Exit")
+        exit()
+
+
+#----------------------------------------------------- Code Bulder --------------------------------------------------------------------------------------------------------------
+
+# The file to read from
+BassCode_File = open(".\DCogSST\.BassCode.py", "r")
+
+# The file in RAW str with lines, so its like a copy paste!
+BassCode_Str = BassCode_File.readlines()
+
+BassCode_File.close()
+
+
+NewGame = open("CogSST-" + (Game_Name) + ".py", "w")
+
+NewGame.writelines(BassCode_Str)
+
+NewGame.close()
+
+
+BassCode_Str[14] ="RootDir = r'" +(RootDir) +"'\n"
+
+BassCode_Str[17] ="Game_Name = r'" +(Game_Name) +"'\n"
+
+BassCode_Str[22] ="steamID3 = " +(steamID3) +"\n"
+
+BassCode_Str[26] ="Appid = " +(Appid) +"\n"
+
+BassCode_Str[29] ="OS_32_or_64 = " +(OS_32_or_64) +"\n"
+
+NewGame = open("CogSST-" + (Game_Name) + ".py", "w")
+
+new_file_contents = "".join(BassCode_Str)
+
+NewGame.write(new_file_contents)
+NewGame.close()
