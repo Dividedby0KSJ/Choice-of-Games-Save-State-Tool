@@ -1,5 +1,5 @@
 import PySimpleGUI as sg
-import subprocess, base64, os
+import subprocess, base64, os, glob
 
 #----------------------------------------------------- OS Dir Check -------------------------------------------------------
 
@@ -17,6 +17,16 @@ if os.path.exists(r"./Choice of Games Save State Tool") :
     os.chdir(r"./Choice of Games Save State Tool")
 # else:
 #     print("Can't change the Current Working Directory\nOr Already in correct directory.")
+
+
+#----------------------------------------------------- Wait TXT -------------------------------------------------------
+
+
+# with open(".\Wait.txt", "w") as Waittxt:
+# # Waittxt = open(".\Wait.txt", "w")
+#     Waittxt.writelines("Wait")
+#     Waittxt.close
+
 
 #----------------------------------------------------- Logo -------------------------------------------------------
 
@@ -76,3 +86,6 @@ while True:
 
 
 HelloTxTWindow.close()
+
+# if glob.glob("Wait.txt"):
+#     os.remove("Wait.txt")

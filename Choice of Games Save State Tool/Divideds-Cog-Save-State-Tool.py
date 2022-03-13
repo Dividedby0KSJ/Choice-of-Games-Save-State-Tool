@@ -61,4 +61,31 @@ else:
 
     FirstRun()
 
-run_path(path_name=".\.Root\CodeStart.py")
+#----------------------------------------------------- Code Start Code -------------------------------------------------------
+
+
+run_path(path_name='.\GUI\HellotxtGUI.py')
+
+# After Wellcome Splash screen, checks if there is any DCogSST File's in the DCogSST Folder
+# If not than runs the "New Game" Setup
+# If there is, runs the DCogMenu.py
+
+if glob.glob('.\DCogSST\DCogSST-*.py'):
+    run_path(path_name='.\DCogSST\.DCogMenu.py')
+    print("DCogSST File found, opening menu")
+
+else:
+    run_path(path_name='.\DCogSST\.NewGame.py')
+    print("No DCogSST File Found! Runing NewGame.py")
+
+
+#----------------------------------------------------- code blocks that i use a lot -------------------------------------------------------
+
+# This prevents the next sript from runing if the Wait.txt is present
+
+# while True:
+#     sleep(2)
+#     if glob.glob("Wait.txt"):
+#         sleep(0.1)
+#     else:
+#         break
