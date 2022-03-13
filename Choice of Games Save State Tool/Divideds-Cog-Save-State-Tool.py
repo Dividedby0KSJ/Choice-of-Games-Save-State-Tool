@@ -71,12 +71,12 @@ run_path(path_name='.\GUI\HellotxtGUI.py')
 # If there is, runs the DCogMenu.py
 
 if glob.glob('.\DCogSST\DCogSST-*.py'):
-    run_path(path_name='.\DCogSST\.DCogMenu.py')
     print("DCogSST File found, opening menu")
+    run_path(path_name='.\DCogSST\.DCogMenu.py')
 
 else:
-    run_path(path_name='.\DCogSST\.NewGame.py')
     print("No DCogSST File Found! Runing NewGame.py")
+    run_path(path_name='.\DCogSST\.NewGame.py')
 
 
 #----------------------------------------------------- code blocks that i use a lot -------------------------------------------------------
