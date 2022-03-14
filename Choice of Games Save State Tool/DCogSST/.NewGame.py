@@ -300,7 +300,7 @@ BassCode_Str = BassCode_File.readlines()
 BassCode_File.close()
 
 
-NewGame = open(".\DCogSST\DCogSST-" + (Game_Name) + ".py", "w")
+NewGame = open((RootDir) + "\DCogSST-" + (Game_Name) + ".py", "w")
 
 NewGame.writelines(BassCode_Str)
 
@@ -317,7 +317,7 @@ BassCode_Str[26] ="Appid = " +(Appid) +"\n"
 
 BassCode_Str[29] ="OS_32_or_64 = " +(OS_32_or_64) +"\n"
 
-NewGame = open(".\DCogSST\DCogSST-" + (Game_Name) + ".py", "w")
+NewGame = open((RootDir) + "\DCogSST-" + (Game_Name) + ".py", "w")
 
 new_file_contents = "".join(BassCode_Str)
 

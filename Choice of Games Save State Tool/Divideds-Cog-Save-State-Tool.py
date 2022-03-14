@@ -63,20 +63,54 @@ else:
 
 #----------------------------------------------------- Code Start Code -------------------------------------------------------
 
-
 run_path(path_name='.\GUI\HellotxtGUI.py')
+
+
+RootDir = 'NA'
+
+if glob.glob(".\Variables\RootDir.txt"): #if file is alredy available
+    RootDirFile = open(".\Variables\RootDir.txt", "r")
+    RootDir = RootDirFile.readline()
+    RootDirFile.close
+
+    if RootDir == 'NA':
+
+        print("Checking Local Program folder")
+
+        if glob.glob('.\DCogSST\DCogSST-*.py'):
+            print("DCogSST File found, opening menu")
+            run_path(path_name='.\DCogSST\.DCogMenu.py')
+
+        else:
+            print("No DCogSST File Found! Runing NewGame.py")
+            run_path(path_name='.\DCogSST\.NewGame.py')
+    
+    else:
+
+        if glob.glob(RootDir + "\DCogSST-*.py"):
+            print("DCogSST File found, opening menu")
+            run_path(path_name='.\DCogSST\.DCogMenu.py')
+
+        else:
+            print("No DCogSST File Found! Runing NewGame.py")
+            run_path(path_name='.\DCogSST\.NewGame.py')
+
+else: 
+
+    print("Checking Local Program folder")
+
+    if glob.glob('.\DCogSST\DCogSST-*.py'):
+        print("DCogSST File found, opening menu")
+        run_path(path_name='.\DCogSST\.DCogMenu.py')
+
+    else:
+        print("No DCogSST File Found! Runing NewGame.py")
+        run_path(path_name='.\DCogSST\.NewGame.py')
+
 
 # After Wellcome Splash screen, checks if there is any DCogSST File's in the DCogSST Folder
 # If not than runs the "New Game" Setup
 # If there is, runs the DCogMenu.py
-
-if glob.glob('.\DCogSST\DCogSST-*.py'):
-    print("DCogSST File found, opening menu")
-    run_path(path_name='.\DCogSST\.DCogMenu.py')
-
-else:
-    print("No DCogSST File Found! Runing NewGame.py")
-    run_path(path_name='.\DCogSST\.NewGame.py')
 
 
 #----------------------------------------------------- code blocks that i use a lot -------------------------------------------------------

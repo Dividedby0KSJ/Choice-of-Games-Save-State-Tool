@@ -68,6 +68,7 @@ while True:
             break
 
     if event == 'New Cog Game':
+        CogMenuWindow.close()
         run_path(path_name='.\DCogSST\.NewGame.py')
 
 CogMenuWindow.close()
