@@ -19,13 +19,6 @@ This is the point of this tool.
 
 # How to use
 
-
-This code has gone through (and is currently being remade) major code changes!
-As far as i know, the latest comand line release is the most stable. [The Main Branch is the CMD]
-In my brake I have been learning and now have better practecs.
-pleas be patent.
-
-
 ## #01 Python
 
 First things first are, you need python 3, I used python 3.9.4 to make this program but any python 3 and up **_Should_** work.
