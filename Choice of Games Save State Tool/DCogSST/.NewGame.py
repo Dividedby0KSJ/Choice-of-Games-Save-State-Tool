@@ -1,6 +1,7 @@
 import PySimpleGUI as sg
 from time import sleep
 import os, subprocess, glob, platform
+from runpy import run_path
 
 sg.theme('Black')   # PySimpleGUI Theme
 
@@ -322,3 +323,9 @@ new_file_contents = "".join(BassCode_Str)
 
 NewGame.write(new_file_contents)
 NewGame.close()
+
+#----------------------------------------------------- Back to Menu ---------------------------------------------------------------------
+
+
+run_path(path_name='.\DCogSST\.NewGame.py')
+
