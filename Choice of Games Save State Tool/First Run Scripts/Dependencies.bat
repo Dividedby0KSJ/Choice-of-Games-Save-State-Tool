@@ -41,7 +41,6 @@ if '%errorlevel%' NEQ '0' (
 
 
 python -m pip install --upgrade pip
-pip install pyttsx3==2.71
 pip install pypiwin32
 pip install PySimpleGUI
 pip install pyttsx3

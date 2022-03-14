@@ -41,7 +41,6 @@ if '%errorlevel%' NEQ '0' (
 
 
 python -m pip install --upgrade pip
-pip uninstall pyttsx3==2.71
 pip uninstall pypiwin32
 pip uninstall PySimpleGUI
 pip uninstall pyttsx3
