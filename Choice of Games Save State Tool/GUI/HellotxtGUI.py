@@ -40,16 +40,7 @@ with open(".\GUI\DCogStt.png", "rb") as DCogStt_file:
 
 #----------------------------------------------------- TTS -------------------------------------------------------
 
-
-#this makes 2 py files, one of them to make the 
-MasterOneLineHelloTTS = """\nimport pyttsx3\nfrom time import sleep\n\nVerNumber = str("0.1")\n\n# initialize Text-to-speech engine\nTTSEngine = pyttsx3.init()\nTTSEngine.setProperty('rate', 190)\nTTSEngine.setProperty('volume',1)\n\nsleep(0.4)\n\n# There is a bug that misses the first little bit of Welcome, so the 'a' Fixed it\nTTSEngine.say("a")\nTTSEngine.say("Wellcom to Divided's Choice of Games Save state tool!")\nTTSEngine.runAndWait()\nTTSEngine.say("Version Number " + (VerNumber))\nTTSEngine.runAndWait()\n"""
-
-with open(".\GUI\HelloTTS.py", "w") as HelloTTS:
-    HelloTTS.writelines([MasterOneLineHelloTTS])
-    HelloTTS.close
-
 subprocess.Popen(['.\GUI\HelloTTS.py'], shell=True, creationflags=subprocess.SW_HIDE)
-
 
 #----------------------------------------------------- GUI -------------------------------------------------------
 
@@ -62,7 +53,7 @@ HelloTxTlayoutC = [
     [sg.Text("Wellcom to Divided's", font=("arial", 30), text_color='Yellow')],
     [sg.Text("Choice of Games Save state tool!", font=("arial", 30), text_color='Yellow')],
     [sg.Text("Made by 'Kieren St James' (Divided By 0)", font=("arial", 20), text_color='lightgray')],
-    [sg.Text("Revision #2 v.0.8", font=("arial", 20), text_color='red')],
+    [sg.Text("Revision #2 v.0.9", font=("arial", 20), text_color='red')],
     [sg.Text("You can click the logo to skip to the menue", font=("impact", 16), text_color='DarkGray')],
     [sg.Image(source=DCogStt_64, enable_events=True, key='Logo')]
 ]

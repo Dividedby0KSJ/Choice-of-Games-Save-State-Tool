@@ -36,7 +36,8 @@ def Gamelist():
 DCogSSTFile = 'NA'
 
 CogMenuLayout = [
-    [sg.Input(), sg.FileBrowse('DCogSST File', file_types=[("Python files", "DCogSST-*.py")])],
+    [sg.Text("Use the 'DCogSST File' Button to open the game save state manager", justification='Center', font=('Helvitica',12))],
+    [sg.Input(size=(55), key="DCogSST File Input"), sg.Push(), sg.FileBrowse('DCogSST File', target="DCogSST File Input", file_types=[("Python files", "DCogSST-*.py")])],
     [sg.Button(button_text="Open"), sg.Button(button_text="Cancel", button_color = 'red'), sg.Push(), sg.Button(button_text="New Cog Game", button_color = '#33ff63',)],
     # [sg.Text('Ass')],
 ]
