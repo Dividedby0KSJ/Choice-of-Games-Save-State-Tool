@@ -21,6 +21,9 @@ This is the point of this tool.
 
 THIS README FILE IS UNDER DEVELOPMENT
 
+Just download the release and run the tool. it will do everything for you.
+python 3.9 and above is needed [Possibly any python 3 will work but is not teasted]
+
 ## #01 Python
 
 First things first are, you need python 3, I used python 3.9.4 to make this program but any python 3 and up **_Should_** work.
