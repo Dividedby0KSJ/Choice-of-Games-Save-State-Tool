@@ -30,6 +30,11 @@ First things first are, you need python 3, I used python 3.9.4 to make this prog
 
 [Python Download](https://www.python.org/downloads/) <--- This link will take you to the Python download page and will download the most recent version of python.
 
+## #02 Run it!
+
+It explanes all you need to do in the program itself.
+happy reading!
+
 &nbsp;
 
 # About me
